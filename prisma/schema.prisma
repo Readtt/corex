@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider        = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Post {
-    id        String      @id @default(auto()) @map("_id") @db.ObjectId
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
     name      String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -65,10 +65,16 @@ model User {
 }
 
 model VerificationToken {
-    id            String    @id @default(auto()) @map("_id") @db.ObjectId
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
     identifier String
     token      String   @unique
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Waitlist {
+    id        String   @id @default(auto()) @map("_id") @db.ObjectId
+    email     String?  @unique
+    createdAt DateTime @default(now())
 }

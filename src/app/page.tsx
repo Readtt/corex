@@ -1,11 +1,13 @@
-
+import Navbar from "@/components/navbar/navbar";
 import { auth } from "@/server/auth";
 
-export default async function Home() {
+// https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
+
+export default async function Page() {
   const session = await auth();
   return (
-    <div>
-      Home
+    <div className="min-h-screen">
+      <Navbar session={session} />
     </div>
   );
 }

@@ -9,9 +9,11 @@ export default function Providers({
       attribute="class"
       defaultTheme="dark"
       enableSystem
-      disableTransitionOnChange
+      
     >
-      <TRPCReactProvider>{children}</TRPCReactProvider>
+      <TRPCReactProvider>
+        {children}
+      </TRPCReactProvider>
     </ThemeProvider>
   );
 }
