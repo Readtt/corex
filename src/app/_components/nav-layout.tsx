@@ -6,20 +6,20 @@ import Footer from "@/components/footer/footer";
 export default function NavLayout({
   session,
   children,
-  className
+  className,
+  disableFooter,
 }: {
   session: Session | null;
   children: React.ReactNode;
   className?: string;
+  disableFooter?: boolean;
 }) {
   return (
     <div className={cn("min-h-screen", className)}>
       <Navbar session={session} />
-      <div className={"flex h-[calc(100vh-56px)] overflow-x-hidden flex-col"}>
-        <div className="flex w-full justify-center">
-          {children}
-        </div>
-        <Footer />
+      <div className={"flex h-[calc(100vh-56px)] flex-col overflow-x-hidden"}>
+        <div className="flex w-full justify-center">{children}</div>
+        {!disableFooter && <Footer />}
       </div>
     </div>
   );

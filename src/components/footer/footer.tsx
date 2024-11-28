@@ -52,7 +52,7 @@ const sections: Section[] = [
 
 const Footer = () => {
   return (
-    <div className="flex w-full justify-center pb-6">
+    <div className="flex w-full justify-center py-6 px-6">
       <footer className="container">
         <div className="flex flex-col items-center justify-between gap-10 text-center lg:flex-row lg:text-left">
           <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">

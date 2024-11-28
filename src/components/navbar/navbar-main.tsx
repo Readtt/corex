@@ -44,7 +44,6 @@ export default function NavbarMain({ session }: { session: Session | null }) {
         <NavbarLogo />
         <div className="flex items-center">
           <NavbarItem href="/">Home</NavbarItem>
-          <NavbarItem href="/waitlist">Waitlist</NavbarItem>
         </div>
       </div>
       <div className="flex gap-4">

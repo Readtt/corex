@@ -20,7 +20,7 @@ export default async function Page() {
   if (!session) redirect("/");
 
   return (
-    <NavLayout session={session}>
+    <NavLayout disableFooter={true} session={session}>
       <div className="container mx-4">
         <div className="my-10 space-y-6 px-4 py-6">
           <div className="space-y-0.5">

@@ -1,11 +1,11 @@
 "use client";
 
 import NextAuthJSIcon from "@/components/icons/NextAuthJSIcon";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import config from "@/config";
 import {
+  SiGithub,
   SiGmail,
   SiNextdotjs,
   SiPrisma,
@@ -15,14 +15,14 @@ import {
   SiTrpc,
   SiTypescript,
 } from "@icons-pack/react-simple-icons";
-import { ChevronRight, Volleyball, ExternalLink } from "lucide-react";
+import { ChevronRight, ExternalLink, Volleyball } from "lucide-react";
 import { type Session } from "next-auth";
 import { useRouter } from "next/navigation";
-import config from "@/config";
+import WaitlistCard from "./waitlist/waitlist-card";
 
 const features = [
   {
-    title: "Next.JS",
+    title: "Next.js",
     description:
       "A powerful React framework for building server-rendered or statically generated web applications. It offers features like API routes, image optimization, and routing out of the box.",
     icon: <SiNextdotjs className="size-4 md:size-6" />,
@@ -77,12 +77,46 @@ const features = [
   },
 ];
 
+const faqs = [
+  {
+    question: "What is CoreX and how does it work?",
+    answer:
+      "CoreX is a scalable, fully customizable SaaS solution built using modern technologies like Next.js, TypeScript, Tailwind CSS, Prisma, and more. It offers an intuitive platform for creating and managing web applications, with seamless integration and deployment capabilities using SST and other modern tools.",
+  },
+  {
+    question: "How do I deploy a CoreX project?",
+    answer:
+      "CoreX can be deployed effortlessly using SST (Serverless Stack). With SST, you can deploy your CoreX application to AWS and other cloud platforms with just a few simple commands, ensuring quick and reliable deployment at scale.",
+  },
+  {
+    question: "Is CoreX customizable for different business needs?",
+    answer:
+      "Yes! CoreX is designed to be highly customizable. You can adjust the platform's features, UI components, and integrations to suit the specific needs of your business or product. It offers flexible configuration to fit a wide range of use cases.",
+  },
+  {
+    question:
+      "Can I use CoreX for both small projects and large-scale applications?",
+    answer:
+      "Absolutely! CoreX is designed to scale, making it ideal for both small projects and large-scale enterprise applications. Whether you are building a simple app or an enterprise-level system, CoreX's flexible architecture can handle your needs.",
+  },
+  {
+    question: "Can I integrate third-party services with CoreX?",
+    answer:
+      "CoreX is built to integrate easily with third-party services. Whether it's analytics, CRM systems, marketing tools, or custom APIs, you can easily extend CoreX by using its flexible APIs and integration points.",
+  },
+  {
+    question: "Is CoreX suitable for developers new to SaaS development?",
+    answer:
+      "Yes! CoreX is built to be user-friendly while providing powerful customization options for developers of all experience levels. Whether you’re new to SaaS development or an experienced developer, CoreX's intuitive setup and documentation will guide you through the process.",
+  },
+];
+
 export default function Landing({ session }: { session: Session | null }) {
   const router = useRouter();
 
   return (
-    <div className="container mx-4 w-full">
-      <section className="relative overflow-hidden py-64">
+    <div className="container mx-6 w-full">
+      <section className="relative overflow-hidden py-32">
         <div className="container">
           <div className="mx-auto flex max-w-5xl flex-col items-center">
             <div className="z-10 flex flex-col items-center gap-6 text-center">
@@ -90,7 +124,10 @@ export default function Landing({ session }: { session: Session | null }) {
               <Badge variant="outline">{config.site.name}</Badge>
               <div>
                 <h1 className="mb-6 text-pretty text-2xl font-bold lg:text-5xl">
-                  Build your next project with {config.site.name}
+                  Build your next project with{" "}
+                  <span className="bg-yellow-400 dark:text-primary-foreground">
+                    {config.site.name}
+                  </span>
                 </h1>
                 <p className="text-muted-foreground lg:text-xl">
                   Scalable, fully customizable, and effortlessly deployable SaaS
@@ -121,7 +158,7 @@ export default function Landing({ session }: { session: Session | null }) {
                     window.open(config.site.socialUrls.github, "_blank");
                   }}
                 >
-                  Github <ExternalLink className="ml-2 h-4" />
+                  <SiGithub /> Github <ExternalLink className="ml-2 h-4" />
                 </Button>
               </div>
               <div className="mt-20 flex flex-col items-center gap-4">
@@ -166,7 +203,8 @@ export default function Landing({ session }: { session: Session | null }) {
             </div>
             <div className="text-center">
               <p className="text-sm font-medium text-muted-foreground">
-                The time it takes to build and deploy a SaaS with {config.site.name}
+                The time it takes to build and deploy a SaaS with{" "}
+                {config.site.name}
               </p>
               <p className="pt-4 text-7xl font-semibold lg:pt-10">3</p>
               <p className="text-2xl font-semibold text-muted-foreground">
@@ -195,6 +233,54 @@ export default function Landing({ session }: { session: Session | null }) {
                   <p className="text-sm text-muted-foreground md:text-base">
                     {feature.description}
                   </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-32">
+        <div className="container">
+          <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
+            <div className="mx-auto flex max-w-sm flex-col justify-center gap-10">
+              <div className="text-center lg:text-left">
+                <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl">
+                  Waitlist
+                </h1>
+                <p className="text-muted-foreground">
+                  When this product is available, you will be the first to know!
+                </p>
+              </div>
+            </div>
+            <div className="mx-auto flex max-w-screen-md flex-col gap-6 p-10">
+              <WaitlistCard />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="py-32">
+        <div className="container">
+          <div className="text-center">
+            <Badge className="text-xs font-medium">FAQ</Badge>
+            <h1 className="mt-4 text-4xl font-semibold">
+              Common Questions & Answers
+            </h1>
+            <p className="mt-6 font-medium text-muted-foreground">
+              Find out all the essential details about our platform and how it
+              can serve your needs.
+            </p>
+          </div>
+          <div className="mx-auto mt-14 max-w-screen-sm">
+            {faqs.map((faq, index) => (
+              <div key={index} className="mb-8 flex gap-4">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-secondary font-mono text-xs text-primary">
+                  {index + 1}
+                </span>
+                <div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <h3 className="font-medium">{faq.question}</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
                 </div>
               </div>
             ))}
