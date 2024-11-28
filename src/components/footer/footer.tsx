@@ -30,29 +30,24 @@ const sections: Section[] = [
   //     { name: "Features", href: "#" },
   //   ],
   // },
-  // {
-  //   title: "Company",
-  //   links: [
-  //     { name: "About", href: "#" },
-  //     { name: "Team", href: "#" },
-  //     { name: "Blog", href: "#" },
-  //     { name: "Careers", href: "#" },
-  //   ],
-  // },
-  // {
-  //   title: "Resources",
-  //   links: [
-  //     { name: "Help", href: "#" },
-  //     { name: "Sales", href: "#" },
-  //     { name: "Advertise", href: "#" },
-  //     { name: "Privacy", href: "#" },
-  //   ],
-  // },
+  {
+    title: "Resources",
+    links: [
+      { name: "Contact Us", href: "/help" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { name: "Privacy Policy", href: "/legal/privacy" },
+      { name: "Terms of Service", href: "/legal/terms" },
+    ],
+  },
 ];
 
 const Footer = () => {
   return (
-    <div className="flex w-full justify-center py-6 px-6">
+    <div className="flex w-full justify-center px-6 pt-6">
       <footer className="container">
         <div className="flex flex-col items-center justify-between gap-10 text-center lg:flex-row lg:text-left">
           <div className="flex w-full max-w-96 shrink flex-col items-center justify-between gap-6 lg:items-start">
@@ -126,16 +121,8 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="mt-20 flex flex-col justify-between gap-4 border-t pt-8 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
+        <div className="mt-20 flex flex-col justify-between gap-4 border-t py-6 text-center text-sm font-medium text-muted-foreground lg:flex-row lg:items-center lg:text-left">
           <p>© 2024 {config.site.name}. All rights reserved.</p>
-          <ul className="flex justify-center gap-4 lg:justify-start">
-            <li className="hover:text-primary">
-              <a href="#"> Terms and Conditions</a>
-            </li>
-            <li className="hover:text-primary">
-              <a href="#"> Privacy Policy</a>
-            </li>
-          </ul>
         </div>
       </footer>
     </div>

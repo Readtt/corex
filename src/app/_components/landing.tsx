@@ -19,6 +19,7 @@ import { ChevronRight, ExternalLink, Volleyball } from "lucide-react";
 import { type Session } from "next-auth";
 import { useRouter } from "next/navigation";
 import WaitlistCard from "./waitlist/waitlist-card";
+import { List, ListItem } from "@/components/ui/list";
 
 const features = [
   {
@@ -271,19 +272,13 @@ export default function Landing({ session }: { session: Session | null }) {
             </p>
           </div>
           <div className="mx-auto mt-14 max-w-screen-sm">
+            <List className="space-y-8">
             {faqs.map((faq, index) => (
-              <div key={index} className="mb-8 flex gap-4">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-secondary font-mono text-xs text-primary">
-                  {index + 1}
-                </span>
-                <div>
-                  <div className="mb-2 flex items-center justify-between">
-                    <h3 className="font-medium">{faq.question}</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground">{faq.answer}</p>
-                </div>
-              </div>
+              <ListItem key={index} description={faq.answer} number={index + 1}>
+                {faq.question}
+              </ListItem>
             ))}
+            </List>
           </div>
         </div>
       </section>

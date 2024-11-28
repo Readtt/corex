@@ -1,18 +1,10 @@
 import { auth } from "@/server/auth";
 
-import NavLayout from "@/app/_components/nav-layout";
 import ProviderList from "@/components/auth/provider-list";
 import NavbarLogo from "@/components/navbar/navbar-logo";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import config from "@/config";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import config from "@/config";
 
 export default async function Page() {
   const session = await auth();
@@ -48,14 +40,14 @@ export default async function Page() {
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link
-              href="/terms"
+              href="/legal/terms"
               className="underline underline-offset-4 hover:text-primary"
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
-              href="/privacy"
+              href="/legal/privacy"
               className="underline underline-offset-4 hover:text-primary"
             >
               Privacy Policy
@@ -65,23 +57,5 @@ export default async function Page() {
         </div>
       </div>
     </div>
-  );
-
-  return (
-    <NavLayout session={session}>
-      <div className="flex items-center">
-        <Card className="w-[350px] shadow-lg">
-          <CardHeader>
-            <CardTitle>Login</CardTitle>
-            <CardDescription>
-              Sign in and register in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ProviderList />
-          </CardContent>
-        </Card>
-      </div>
-    </NavLayout>
   );
 }
