@@ -1,5 +1,6 @@
 "use client";
 
+import config from "@/config";
 import { Volleyball } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +13,7 @@ export default function NavbarLogo() {
       className="flex cursor-pointer items-center gap-2"
     >
       <Volleyball />
-      <span className="text-xl font-bold">CoreX</span>
+      <span className="text-xl font-bold">{config.site.name}</span>
     </div>
   );
 }

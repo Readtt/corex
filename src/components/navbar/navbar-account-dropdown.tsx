@@ -25,6 +25,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Avatar } from "../ui/avatar";
+import config from "@/config";
 
 export function NavbarAccountDropdown({
   session,
@@ -92,7 +93,7 @@ export function NavbarAccountDropdown({
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
-            window.open("https://github.com/Readtt/corex", "_blank");
+            window.open(config.site.socialUrls.github, "_blank");
           }}
         >
           <Github />
@@ -100,7 +101,7 @@ export function NavbarAccountDropdown({
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            window.open("https://github.com/Readtt/corex/issues", "_blank");
+            window.open(config.site.socialUrls.github, "_blank");
           }}
         >
           <LifeBuoy />

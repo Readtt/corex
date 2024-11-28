@@ -22,6 +22,7 @@ import {
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ModeToggle } from "../ui/mode-toggle";
+import config from "@/config";
 
 function NavbarItem({
   children,
@@ -113,7 +114,7 @@ export default function NavbarMobile({ session }: { session: Session | null }) {
 
                 <NavbarDropdownItem
                   onClick={() => {
-                    window.open("https://github.com/Readtt/corex", "_blank");
+                    window.open(config.site.socialUrls.github, "_blank");
                   }}
                 >
                   <Github />
@@ -122,7 +123,7 @@ export default function NavbarMobile({ session }: { session: Session | null }) {
 
                 <NavbarDropdownItem
                   onClick={() => {
-                    window.open("https://github.com/Readtt/corex", "_blank");
+                    window.open(config.site.socialUrls.github, "_blank");
                   }}
                 >
                   <LifeBuoy />

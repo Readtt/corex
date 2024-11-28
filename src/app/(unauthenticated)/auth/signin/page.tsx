@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import config from "@/config";
 
 export default async function Page() {
   const session = await auth();
@@ -28,7 +29,7 @@ export default async function Page() {
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
             <p className="text-lg">&ldquo;Design First.&rdquo;</p>
-            <footer className="text-sm">CoreX</footer>
+            <footer className="text-sm">{config.site.name}</footer>
           </blockquote>
         </div>
       </div>
