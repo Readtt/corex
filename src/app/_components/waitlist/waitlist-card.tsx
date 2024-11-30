@@ -11,10 +11,10 @@ import WaitlistForm from "./waitlist-form";
 
 export default function WaitlistCard() {
   return (
-    <Card className="w-[400px] shadow-lg">
+    <Card className="max-w-[400px] md:w-full shadow-lg">
       <CardHeader className="text-center">
         <CardTitle>Join the waitlist</CardTitle>
-        <CardDescription>
+        <CardDescription> 
           Enter your email address and we&apos;ll let you know when your spot is
           ready
         </CardDescription>

@@ -12,7 +12,9 @@ export async function updateUserByStripeSubscriptionId(
       data,
     });
   } catch (error) {
-    console.error("Failed to update user by stripe subscription id in database");
+    console.error(
+      "Failed to update user by stripe subscription id in database",
+    );
     throw error;
   }
 }
@@ -74,6 +76,48 @@ export async function createWaitlist(email: string) {
     });
   } catch (error) {
     console.error("Failed to create waitlist in database");
+    throw error;
+  }
+}
+
+export async function createTicket(
+  data: Prisma.XOR<Prisma.TicketCreateInput, Prisma.TicketUncheckedCreateInput>,
+) {
+  try {
+    return await db.ticket.create({
+      data,
+    });
+  } catch (error) {
+    console.error("Failed to create ticket in database");
+    throw error;
+  }
+}
+
+export async function checkLastTicketWithinTimeframe(
+  email: string,
+  timeframeInMinutes: number,
+) {
+  try {
+    const lastTicket = await db.ticket.findFirst({
+      where: {
+        email: email,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    if (lastTicket) {
+      const timeDifference =
+        new Date().getTime() - lastTicket.createdAt.getTime();
+      const timeframeInMillis = timeframeInMinutes * 60 * 1000;
+
+      return timeDifference < timeframeInMillis;
+    }
+
+    return false;
+  } catch (error) {
+    console.error("Failed to check last ticket within timeframe in database");
     throw error;
   }
 }

@@ -10,6 +10,7 @@ import StatsLayout from "./_components/stats/stats-layout";
 import WaitlistLayout from "./_components/waitlist/waitlist-layout";
 
 // https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
+// https://github.com/vercel/ai-chatbot
 // https://awesome-shadcn-ui.vercel.app/
 // TODO: Add ticket
 // TODO: Add email support

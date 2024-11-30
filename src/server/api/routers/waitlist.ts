@@ -7,7 +7,7 @@ import { TRPCError } from "@trpc/server";
 
 export const waitlistRouter = createTRPCRouter({
   addEmail: publicProcedure
-    .input(z.object({ email: z.string().email() })) // Validate email format
+    .input(z.object({ email: z.string().email() }))
     .mutation(async ({ input }) => {
       try {
         const existingEmail = await getWaitlistByEmail(input.email);

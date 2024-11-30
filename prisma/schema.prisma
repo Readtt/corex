@@ -69,3 +69,13 @@ model Waitlist {
     email     String?  @unique
     createdAt DateTime @default(now())
 }
+
+model Ticket {
+    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    email       String?
+    problem     String?
+    severity    String?
+    subject     String?
+    description String?
+    createdAt   DateTime @default(now())
+}
