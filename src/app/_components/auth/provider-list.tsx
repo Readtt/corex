@@ -1,6 +1,6 @@
 "use client";
 
-import AuthButton from "@/components/auth/auth-button";
+import AuthButton from "@/app/_components/auth/auth-button";
 import { Avatar } from "@/components/ui/avatar";
 import { type BuiltInProviderType } from "next-auth/providers";
 import { getProviders, type LiteralUnion } from "next-auth/react";
@@ -8,7 +8,7 @@ import Image from "next/image";
 import { type ClientSafeProvider } from "node_modules/next-auth/lib/client";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../../../components/ui/skeleton";
 
 export default function ProviderList() {
   const [providers, setProviders] = useState<Record<

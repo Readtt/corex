@@ -8,7 +8,7 @@ import {
   SiX,
 } from "@icons-pack/react-simple-icons";
 import { Volleyball } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 
 interface Section {
   title: string;
@@ -21,15 +21,12 @@ interface SubSection {
 }
 
 const sections: Section[] = [
-  // {
-  //   title: "Product",
-  //   links: [
-  //     { name: "Overview", href: "#" },
-  //     { name: "Pricing", href: "#" },
-  //     { name: "Marketplace", href: "#" },
-  //     { name: "Features", href: "#" },
-  //   ],
-  // },
+  {
+    title: "Product",
+    links: [
+      { name: "Pricing", href: "/pricing" },
+    ],
+  },
   {
     title: "Resources",
     links: [

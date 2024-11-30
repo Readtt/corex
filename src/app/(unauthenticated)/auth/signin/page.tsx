@@ -1,7 +1,7 @@
 import { auth } from "@/server/auth";
 
-import ProviderList from "@/components/auth/provider-list";
-import NavbarLogo from "@/components/navbar/navbar-logo";
+import ProviderList from "@/app/_components/auth/provider-list";
+import NavbarLogo from "@/app/_components/navbar/navbar-logo";
 import config from "@/config";
 import Link from "next/link";
 import { redirect } from "next/navigation";

@@ -1,9 +1,39 @@
-// interface Config {
-//     site: {
-//         name: string;
-//         description: string;
-//     }
-// }
+interface Config {
+  site: {
+    name: string;
+    tagline: string;
+    socialUrls: {
+      twitter: string;
+      instagram: string;
+      facebook: string;
+      github: string;
+    };
+  };
+  stripe: {
+    plans: StripePlan[];
+  };
+}
+
+export interface StripePlan {
+  name: string;
+  limits: Record<string, number>;
+  price: {
+    amount: number;
+    priceIds: {
+      test: string;
+      production: string;
+    };
+    frequency: string;
+  };
+  features: Feature[];
+  isFree?: boolean;
+}
+
+export interface Feature {
+  text: string;
+  footnote?: string;
+  negative?: boolean;
+}
 
 const config = {
   site: {
@@ -14,7 +44,7 @@ const config = {
       twitter: "",
       instagram: "",
       facebook: "",
-      github: "https://github.com/Readtt/corex"
+      github: "https://github.com/Readtt/corex",
     },
   },
   stripe: {
@@ -28,29 +58,93 @@ const config = {
             test: "",
             production: "",
           },
+          frequency: "Forever"
         },
         features: [
           {
-            text: "Mobile-friendly interface",
+            "text": "Seamless integration with your tools",
+            "footnote": "Easily connects to your existing systems for streamlined workflows."
           },
           {
-            text: "Higher-quality responses",
-            footnote:
-              "Better algorithmic responses for enhanced content quality",
+            "text": "Enhanced analytics",
+            "footnote": "Get deeper insights with advanced reporting and metrics."
           },
           {
-            text: "Adding guests",
-            footnote: "Allowing other users to access your chatbot as guests.",
-            negative: true,
+            "text": "Customizable workflows",
+            "footnote": "Tailor the platform to suit your unique business processes.",
+            "negative": true
           },
           {
-            text: "Priority support",
-            negative: true,
+            "text": "24/7 customer support",
+            "negative": true
+          }
+        ],
+        isFree: true
+      },
+      {
+        name: "Pro",
+        limits: {},
+        price: {
+          amount: 9.99,
+          priceIds: {
+            test: "price_1QQP2FGO8j9YkwYNngYSaekr",
+            production: "",
           },
+          frequency: "Per month"
+        },
+        features: [
+          {
+            "text": "Seamless integration with your tools",
+            "footnote": "Easily connects to your existing systems for streamlined workflows."
+          },
+          {
+            "text": "Enhanced analytics",
+            "footnote": "Get deeper insights with advanced reporting and metrics."
+          },
+          {
+            "text": "Customizable workflows",
+            "footnote": "Tailor the platform to suit your unique business processes.",
+            "negative": true
+          },
+          {
+            "text": "24/7 customer support",
+            "negative": true
+          }
+        ],
+      },
+      {
+        name: "Entreprise",
+        limits: {},
+        price: {
+          amount: 99.99,
+          priceIds: {
+            test: "price_1QQP2mGO8j9YkwYNd5Lb61dR",
+            production: "",
+          },
+          frequency: "Per month"
+        },
+        features: [
+          {
+            "text": "Seamless integration with your tools",
+            "footnote": "Easily connects to your existing systems for streamlined workflows."
+          },
+          {
+            "text": "Enhanced analytics",
+            "footnote": "Get deeper insights with advanced reporting and metrics."
+          },
+          {
+            "text": "Customizable workflows",
+            "footnote": "Tailor the platform to suit your unique business processes.",
+            "negative": true
+          },
+          {
+            "text": "24/7 customer support",
+            "negative": true
+          }
         ],
       },
     ],
   },
-}; //satisfies Config;
+} satisfies Config;
 
 export default config;

@@ -1,11 +1,12 @@
+"use client";
+
 import {
-  CreditCard,
   Github,
   LifeBuoy,
   Loader2,
   LogOut,
   Settings,
-  User,
+  User
 } from "lucide-react";
 
 import { AvatarFallback } from "@/components/ui/avatar";
@@ -19,13 +20,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import config from "@/config";
 import { type Session } from "@auth/core/types";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Avatar } from "../ui/avatar";
-import config from "@/config";
+import { Avatar } from "../../../components/ui/avatar";
 
 export function NavbarAccountDropdown({
   session,
@@ -77,10 +78,6 @@ export function NavbarAccountDropdown({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <CreditCard />
-            <span>Billing</span>
-          </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => {
               router.push("/settings");

@@ -1,9 +1,11 @@
-import { type Session } from "next-auth";
-import Navbar from "@/components/navbar/navbar";
-import { cn } from "@/lib/utils";
-import Footer from "@/components/footer/footer";
+"use client"
 
-export default function NavLayout({
+import { type Session } from "next-auth";
+import Navbar from "@/app/_components/navbar/navbar";
+import { cn } from "@/lib/utils";
+import Footer from "@/app/_components/footer/footer";
+
+export default function NavbarLayout({
   session,
   children,
   className,

@@ -1,12 +1,12 @@
 "use client";
 
-import NavbarLogo from "@/components/navbar/navbar-logo";
+import NavbarLogo from "@/app/_components/navbar/navbar-logo";
 import { buttonVariants } from "@/components/ui/button";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { type Session } from "@auth/core/types";
 import Link from "next/link";
-import { ModeToggle } from "../ui/mode-toggle";
+import { ModeToggle } from "../../../components/ui/mode-toggle";
 import { NavbarAccountDropdown } from "./navbar-account-dropdown";
 import { usePathname } from "next/navigation";
 
@@ -44,6 +44,7 @@ export default function NavbarMain({ session }: { session: Session | null }) {
         <NavbarLogo />
         <div className="flex items-center">
           <NavbarItem href="/">Home</NavbarItem>
+          <NavbarItem href="/pricing">Pricing</NavbarItem>
         </div>
       </div>
       <div className="flex gap-4">

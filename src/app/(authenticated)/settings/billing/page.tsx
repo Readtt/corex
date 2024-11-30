@@ -1,38 +1,19 @@
 import { auth } from "@/server/auth";
 
-import { AccountForm } from "@/app/(authenticated)/settings/account-form";
 import NavbarLayout from "@/app/_components/navbar/navbar-layout";
 import { redirect } from "next/navigation";
 
 import SidebarContent from "@/app/_components/sidebar/sidebar-content";
 import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
-import { CreditCard, User } from "lucide-react";
-
-export const settingsNavItems = [
-  {
-    title: (
-      <div className="flex flex-row">
-        <User className="mr-2 h-4 w-4" />
-        Account
-      </div>
-    ),
-    href: "/settings",
-  },
-  {
-    title: (
-      <div className="flex flex-row">
-        <CreditCard className="mr-2 h-4 w-4" />
-        Billing
-      </div>
-    ),
-    href: "/settings/billing",
-  },
-];
+import { settingsNavItems } from "../page";
+import BillingCard from "@/app/_components/billing/billing-card";
+import { getUserSubscriptionPlan } from "@/server/stripe/client";
 
 export default async function Page() {
   const session = await auth();
-
   if (!session) redirect("/");
+
+  const subscription = await getUserSubscriptionPlan(session.user.id);
 
   return (
     <NavbarLayout disableFooter={true} session={session}>
@@ -42,10 +23,10 @@ export default async function Page() {
         description="Manage your account settings and set preferences."
       >
         <SidebarContent
-          title="Account"
-          description="Update your account settings."
+          title="Billing"
+          description="Update your billing settings."
         >
-          <AccountForm session={session} />
+          <BillingCard subscription={subscription} />
         </SidebarContent>
       </SidebarLayout>
     </NavbarLayout>

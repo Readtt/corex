@@ -1,7 +1,7 @@
 "use client";
 
-import AuthButton from "@/components/auth/auth-button";
-import NavbarLogo from "@/components/navbar/navbar-logo";
+import AuthButton from "@/app/_components/auth/auth-button";
+import NavbarLogo from "@/app/_components/navbar/navbar-logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
@@ -10,10 +10,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import config from "@/config";
 import { cn } from "@/lib/utils";
 import { type Session } from "@auth/core/types";
 import {
-  CreditCard,
   Github,
   LifeBuoy,
   Menu,
@@ -21,8 +21,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { ModeToggle } from "../ui/mode-toggle";
-import config from "@/config";
+import { ModeToggle } from "../../../components/ui/mode-toggle";
 
 function NavbarItem({
   children,
@@ -97,15 +96,11 @@ export default function NavbarMobile({ session }: { session: Session | null }) {
           </SheetHeader>
           <div className="my-8 flex flex-col gap-4">
             <NavbarItem href="/">Home</NavbarItem>
+            <NavbarItem href="/pricing">Pricing</NavbarItem>
           </div>
           <div className="border-t pt-4">
             {session && (
               <div className="grid grid-cols-2 justify-start gap-2">
-                <NavbarDropdownItem href="/billing">
-                  <CreditCard />
-                  <span>Billing</span>
-                </NavbarDropdownItem>
-
                 <NavbarDropdownItem href="/settings">
                   <Settings />
                   <span>Settings</span>

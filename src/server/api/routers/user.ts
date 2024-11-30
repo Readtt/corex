@@ -1,10 +1,10 @@
-import { z } from "zod";
 import { DoNotCatchTRPCError } from "@/server/api/error";
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
 export const userRouter = createTRPCRouter({
-  updateName: publicProcedure
+  updateName: protectedProcedure
     .input(
       z.object({
         name: z
@@ -22,7 +22,7 @@ export const userRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       try {
-        const userId = ctx.session?.user.id;
+        const userId = ctx.session.user.id;
         const existingUser = await ctx.db.user.findUnique({
           where: { id: userId }, // Assuming users are identified by their userId
         });

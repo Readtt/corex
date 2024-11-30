@@ -1,25 +1,47 @@
 import { auth } from "@/server/auth";
-import NavLayout from "./_components/nav-layout";
+import NavbarLayout from "./_components/navbar/navbar-layout";
 
-import Landing from "./_components/landing";
+import { getUserSubscriptionPlan } from "@/server/stripe/client";
+import FAQLayout from "./_components/faq/faq-layout";
+import FeaturesLayout from "./_components/features/features-layout";
+import HeroLayout from "./_components/hero/hero-layout";
+import PricingLayout from "./_components/pricing/pricing-layout";
+import StatsLayout from "./_components/stats/stats-layout";
+import WaitlistLayout from "./_components/waitlist/waitlist-layout";
 
 // https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
 // https://awesome-shadcn-ui.vercel.app/
 // TODO: Add ticket
-// TODO: Billing and stripe
-// TODO: Pricing component
 // TODO: Add email support
 // TODO: add error, and not found component
 // TODO: Add SST help
-// TODO: move auth, navbar and footer into _components
-// TODO: rename landing.tsx 
 
 export default async function Page() {
   const session = await auth();
+  const subscription = await getUserSubscriptionPlan(session?.user.id);
 
   return (
-    <NavLayout session={session}>
-      <Landing session={session}/>
-    </NavLayout>
+    <NavbarLayout session={session}>
+      <div className="container mx-6 space-y-64 py-32">
+        <section>
+          <HeroLayout session={session} />
+        </section>
+        <section>
+          <StatsLayout />
+        </section>
+        <section>
+          <FeaturesLayout />
+        </section>
+        <section>
+          <PricingLayout session={session} subscription={subscription} />
+        </section>
+        <section>
+          <WaitlistLayout />
+        </section>
+        <section>
+          <FAQLayout />
+        </section>
+      </div>
+    </NavbarLayout>
   );
 }

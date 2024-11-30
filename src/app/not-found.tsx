@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import NavLayout from "./_components/nav-layout";
+import NavbarLayout from "./_components/navbar/navbar-layout";
 import { auth } from "@/server/auth";
 
 export default async function notFound() {
   const session = await auth();
 
   return (
-    <NavLayout session={session}>
+    <NavbarLayout session={session}>
       <div className="mx-2 flex h-[calc(100vh-56px)] items-center justify-center py-48">
         <div className="flex flex-col">
           <div className="flex flex-col items-center">
@@ -31,6 +31,6 @@ export default async function notFound() {
           </div>
         </div>
       </div>
-    </NavLayout>
+    </NavbarLayout>
   );
 }
