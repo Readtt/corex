@@ -3,7 +3,7 @@
 import { Loader2, type LucideIcon } from "lucide-react";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
-import { type getUserSubscriptionPlan } from "@/server/stripe/client";
+import { type getUserSubscriptionPlan } from "@/server/stripe";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 

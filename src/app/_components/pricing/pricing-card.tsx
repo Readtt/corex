@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 import { type Feature, type StripePlan } from "@/config";
 import { cn } from "@/lib/utils";
-import { type getUserSubscriptionPlan } from "@/server/stripe/client";
+import { type getUserSubscriptionPlan } from "@/server/stripe";
 import { ArrowRight, Check, HelpCircle, Minus } from "lucide-react";
 import { type Session } from "next-auth";
 import { useRouter } from "next/navigation";

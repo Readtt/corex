@@ -98,7 +98,7 @@ export function NavbarAccountDropdown({
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
-            window.open(config.site.socialUrls.github, "_blank");
+            window.open(config.site.socialUrls.github + "/issues", "_blank");
           }}
         >
           <LifeBuoy />

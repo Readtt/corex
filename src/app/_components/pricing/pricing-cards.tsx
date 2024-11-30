@@ -1,7 +1,7 @@
 "use client";
 
 import config from "@/config";
-import { type getUserSubscriptionPlan } from "@/server/stripe/client";
+import { type getUserSubscriptionPlan } from "@/server/stripe";
 import { type Session } from "next-auth";
 import PricingCard from "./pricing-card";
 

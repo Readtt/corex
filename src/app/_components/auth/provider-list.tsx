@@ -32,7 +32,15 @@ export default function ProviderList() {
   }, []);
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-6">
+      {/* <SigninForm />
+      <div className="flex items-center">
+        <Separator className="flex-1" />
+        <span className="mx-4 text-xs font-medium text-muted-foreground">
+          OR CONTINUE WITH
+        </span>
+        <Separator className="flex-1" />
+      </div> */}
       {providers ? (
         Object.values(providers)
           .filter((p) => p.id !== "credentials")

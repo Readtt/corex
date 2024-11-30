@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import config from "@/config";
-import { type getUserSubscriptionPlan } from "@/server/stripe/client";
+import { type getUserSubscriptionPlan } from "@/server/stripe";
 import StripeButton from "../stripe/stripe-button";
 
 const plans = config.stripe.plans;

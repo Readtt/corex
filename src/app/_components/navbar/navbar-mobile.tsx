@@ -117,7 +117,7 @@ export default function NavbarMobile({ session }: { session: Session | null }) {
 
                 <NavbarDropdownItem
                   onClick={() => {
-                    window.open(config.site.socialUrls.github, "_blank");
+                    window.open(config.site.socialUrls.github + "/issues", "_blank");
                   }}
                 >
                   <LifeBuoy />

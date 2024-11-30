@@ -5,7 +5,7 @@ import { z } from "zod";
 
 import { getBaseUrl } from "@/lib/utils";
 import { protectedProcedure } from "@/server/api/trpc";
-import { getUserSubscriptionPlan, stripe } from "@/server/stripe/client";
+import { getUserSubscriptionPlan, stripe } from "@/server/stripe";
 import { DoNotCatchTRPCError } from "../error";
 
 const planNames = config.stripe.plans

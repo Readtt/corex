@@ -1,7 +1,7 @@
 import { auth } from "@/server/auth";
 import NavbarLayout from "./_components/navbar/navbar-layout";
 
-import { getUserSubscriptionPlan } from "@/server/stripe/client";
+import { getUserSubscriptionPlan } from "@/server/stripe";
 import FAQLayout from "./_components/faq/faq-layout";
 import FeaturesLayout from "./_components/features/features-layout";
 import HeroLayout from "./_components/hero/hero-layout";
@@ -13,7 +13,7 @@ import WaitlistLayout from "./_components/waitlist/waitlist-layout";
 // https://awesome-shadcn-ui.vercel.app/
 // TODO: Add ticket
 // TODO: Add email support
-// TODO: add error, and not found component
+// TODO: add error component
 // TODO: Add SST help
 
 export default async function Page() {

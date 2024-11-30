@@ -1,7 +1,7 @@
 import config from "@/config";
 import { env } from "@/env";
 import Stripe from "stripe";
-import { getUserById } from "../db/queries";
+import { getUserById } from "./db/queries";
 
 export const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
   apiVersion: "2024-11-20.acacia",

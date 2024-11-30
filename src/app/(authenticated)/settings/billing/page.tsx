@@ -7,7 +7,7 @@ import SidebarContent from "@/app/_components/sidebar/sidebar-content";
 import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
 import { settingsNavItems } from "../page";
 import BillingCard from "@/app/_components/billing/billing-card";
-import { getUserSubscriptionPlan } from "@/server/stripe/client";
+import { getUserSubscriptionPlan } from "@/server/stripe";
 
 export default async function Page() {
   const session = await auth();

@@ -43,6 +43,17 @@ export async function getUserById(id: string) {
   }
 }
 
+// export async function getUserByEmail(email: string) {
+//   try {
+//     return await db.user.findUnique({
+//       where: { email },
+//     });
+//   } catch (error) {
+//     console.error("Failed to get user by email from database");
+//     throw error;
+//   }
+// }
+
 export async function getWaitlistByEmail(email: string) {
   try {
     return await db.waitlist.findUnique({

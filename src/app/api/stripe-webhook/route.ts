@@ -3,7 +3,7 @@ import {
   updateUserById,
   updateUserByStripeSubscriptionId,
 } from "@/server/db/queries";
-import { stripe } from "@/server/stripe/client";
+import { stripe } from "@/server/stripe";
 import { headers } from "next/headers";
 import type Stripe from "stripe";
 
