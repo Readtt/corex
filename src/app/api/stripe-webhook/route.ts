@@ -1,8 +1,11 @@
+import { env } from "@/env";
+import {
+  updateUserById,
+  updateUserByStripeSubscriptionId,
+} from "@/server/db/queries";
+import { stripe } from "@/server/stripe/client";
 import { headers } from "next/headers";
 import type Stripe from "stripe";
-import { stripe } from "@/server/stripe/client";
-import { db } from "@/server/db";
-import { env } from "@/env";
 
 async function stripeWebhookHandler(request: Request) {
   const body = await request.text();
@@ -30,14 +33,9 @@ async function stripeWebhookHandler(request: Request) {
       session.subscription as string,
     );
 
-    await db.user.update({
-      where: { stripeSubscriptionId: subscription.id },
-      data: {
-        stripePriceId: subscription.items.data[0]?.price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000,
-        ),
-      },
+    await updateUserByStripeSubscriptionId(subscription.id, {
+      stripePriceId: subscription.items.data[0]?.price.id,
+      stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
     });
   }
 
@@ -52,16 +50,11 @@ async function stripeWebhookHandler(request: Request) {
       session.subscription as string,
     );
 
-    await db.user.update({
-      where: { id: session.metadata.userId },
-      data: {
-        stripeSubscriptionId: subscription.id,
-        stripeCustomerId: subscription.customer as string,
-        stripePriceId: subscription.items.data[0]?.price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000,
-        ),
-      },
+    await updateUserById(session.metadata.userId, {
+      stripeSubscriptionId: subscription.id,
+      stripeCustomerId: subscription.customer as string,
+      stripePriceId: subscription.items.data[0]?.price.id,
+      stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000),
     });
   }
 
@@ -69,3 +62,4 @@ async function stripeWebhookHandler(request: Request) {
 }
 
 export { stripeWebhookHandler as POST };
+

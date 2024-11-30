@@ -1,7 +1,7 @@
 import config from "@/config";
 import { env } from "@/env";
-import { db } from "@/server/db";
 import Stripe from "stripe";
+import { getUserById } from "../db/queries";
 
 export const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
   apiVersion: "2024-11-20.acacia",
@@ -25,8 +25,7 @@ export async function getUserSubscriptionPlan(userId?: string) {
     return defaultSubscriptionPlan;
   }
 
-  const dbUser = await db.user.findFirst({ where: { id: userId } });
-
+  const dbUser = await getUserById(userId);
   if (!dbUser) {
     return defaultSubscriptionPlan;
   }

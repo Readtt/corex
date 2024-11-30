@@ -66,7 +66,7 @@ function NavbarDropdownItem({
           : onClick
       }
       className={cn("justify-start text-muted-foreground", {
-        "bg-muted text-foreground hover:bg-muted": pathname === href,
+        "bg-muted text-foreground hover:bg-muted": href && pathname.includes(href),
       })}
       variant={"ghost"}
     >

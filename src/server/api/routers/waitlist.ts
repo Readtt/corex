@@ -1,18 +1,16 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { TRPCError } from "@trpc/server";
 import { DoNotCatchTRPCError } from "@/server/api/error";
+import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { createWaitlist, getWaitlistByEmail } from "@/server/db/queries";
+import { TRPCError } from "@trpc/server";
 
 export const waitlistRouter = createTRPCRouter({
   addEmail: publicProcedure
     .input(z.object({ email: z.string().email() })) // Validate email format
-    .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ input }) => {
       try {
-        const existingEmail = await ctx.db.waitlist.findUnique({
-          where: { email: input.email },
-        });
-
+        const existingEmail = await getWaitlistByEmail(input.email);
         if (existingEmail) {
           throw new DoNotCatchTRPCError({
             message: "Your email is already on the waitlist.",
@@ -20,13 +18,7 @@ export const waitlistRouter = createTRPCRouter({
           });
         }
 
-        const newWaitlistEntry = await ctx.db.waitlist.create({
-          data: {
-            email: input.email,
-          },
-        });
-
-        return newWaitlistEntry;
+        return await createWaitlist(input.email);
       } catch (error) {
         if (error instanceof DoNotCatchTRPCError) {
           throw error;
