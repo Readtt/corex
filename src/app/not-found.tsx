@@ -3,13 +3,19 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import NavbarLayout from "./_components/navbar/navbar-layout";
 import { auth } from "@/server/auth";
+import { isUserAdminById } from "@/server/db/queries";
+import { cn } from "@/lib/utils";
 
 export default async function notFound() {
   const session = await auth();
+  const isAdmin = session?.user.id ? (await isUserAdminById(session.user.id)) : false;
 
   return (
-    <NavbarLayout session={session}>
-      <div className="mx-2 flex h-[calc(100vh-56px)] items-center justify-center py-48">
+    <NavbarLayout session={session} isAdmin={isAdmin}>
+      <div className={cn("mx-2 flex items-center justify-center py-48", {
+        "h-[calc(100vh-56px)]": !isAdmin,
+        "h-[calc(100vh-86px)]": isAdmin
+      })}>
         <div className="flex flex-col">
           <div className="flex flex-col items-center">
             <div className="text-primary-500 text-5xl font-bold">404</div>

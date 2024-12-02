@@ -4,7 +4,7 @@ import { type Session } from "@auth/core/types";
 import NavbarMain from "./navbar-main";
 import NavbarMobile from "./navbar-mobile";
 
-export default function Navbar({ session }: { session: Session | null }) {
+export default function Navbar({ session, isAdmin }: { session: Session | null, isAdmin: boolean }) {
   return (
     <section
       className={
@@ -13,10 +13,10 @@ export default function Navbar({ session }: { session: Session | null }) {
     >
       <div className="container">
         <nav className="hidden justify-between sm:flex">
-          <NavbarMain session={session} />
+          <NavbarMain session={session} isAdmin={isAdmin} />
         </nav>
         <div className="block sm:hidden">
-          <NavbarMobile session={session} />
+          <NavbarMobile session={session} isAdmin={isAdmin} />
         </div>
       </div>
     </section>

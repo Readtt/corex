@@ -37,11 +37,11 @@ function NavbarItem({
   );
 }
 
-export default function NavbarMain({ session }: { session: Session | null }) {
+export default function NavbarMain({ session, isAdmin }: { session: Session | null, isAdmin: boolean }) {
   return (
     <>
       <div className="flex items-center gap-6">
-        <NavbarLogo />
+        <NavbarLogo isAdmin={isAdmin} />
         <div className="flex items-center">
           <NavbarItem href="/">Home</NavbarItem>
           <NavbarItem href="/pricing">Pricing</NavbarItem>

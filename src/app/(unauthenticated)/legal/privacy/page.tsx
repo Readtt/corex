@@ -1,12 +1,14 @@
 import { auth } from "@/server/auth";
 import NavbarLayout from "@/app/_components/navbar/navbar-layout";
 import { List, ListItem } from "@/components/ui/list";
+import { isUserAdminById } from "@/server/db/queries";
 
 export default async function Page() {
   const session = await auth();
+  const isAdmin = session?.user.id ? await isUserAdminById(session.user.id) : false;
 
   return (
-    <NavbarLayout session={session}>
+    <NavbarLayout session={session} isAdmin={isAdmin}>
       <section className="prose prose-zinc prose-p:my-2 mx-auto flex w-full max-w-4xl flex-col space-y-6 px-4 py-20">
         <h1 className="mb-8 text-4xl font-extrabold">
           <strong>Privacy Policy</strong>

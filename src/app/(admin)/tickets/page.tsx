@@ -15,7 +15,7 @@ export default async function Page() {
   }
 
   return (
-    <NavbarLayout disableFooter={true} session={session}>
+    <NavbarLayout disableFooter={true} session={session} isAdmin={isAdmin}>
       <div className="container flex flex-col py-12">
         <div className="mx-6">
           <TicketsLayout />

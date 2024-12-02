@@ -75,11 +75,11 @@ function NavbarDropdownItem({
   );
 }
 
-export default function NavbarMobile({ session }: { session: Session | null }) {
+export default function NavbarMobile({ session, isAdmin }: { session: Session | null, isAdmin: boolean }) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-row gap-4">
-        <NavbarLogo />
+        <NavbarLogo isAdmin={isAdmin} />
         <ModeToggle />
       </div>
       <Sheet>
@@ -91,7 +91,7 @@ export default function NavbarMobile({ session }: { session: Session | null }) {
         <SheetContent className="overflow-y-auto">
           <SheetHeader>
             <SheetTitle>
-              <NavbarLogo />
+              <NavbarLogo isAdmin={isAdmin} />
             </SheetTitle>
           </SheetHeader>
           <div className="my-8 flex flex-col gap-4">

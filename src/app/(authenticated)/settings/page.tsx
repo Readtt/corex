@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import SidebarContent from "@/app/_components/sidebar/sidebar-content";
 import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
 import { CreditCard, User } from "lucide-react";
+import { isUserAdminById } from "@/server/db/queries";
 
 export const settingsNavItems = [
   {
@@ -34,8 +35,10 @@ export default async function Page() {
 
   if (!session) redirect("/");
 
+  const isAdmin = await isUserAdminById(session.user.id)
+
   return (
-    <NavbarLayout disableFooter={true} session={session}>
+    <NavbarLayout disableFooter={true} session={session} isAdmin={isAdmin}>
       <SidebarLayout
         sidebarItems={{ items: settingsNavItems }}
         title="Settings"

@@ -2,16 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle
 } from "@/components/ui/sheet";
-import { useEffect, useState } from "react";
 
 export interface TicketDisplayProps {
   open: boolean;
@@ -24,7 +22,7 @@ export function TicketDisplay({
   ticketId,
   setIsOpen,
 }: TicketDisplayProps) {
-    // get ticket by id
+  // get ticket by id
   return (
     <Sheet open={open} onOpenChange={setIsOpen}>
       <SheetContent>

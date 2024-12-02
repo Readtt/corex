@@ -8,15 +8,17 @@ import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
 import { settingsNavItems } from "../page";
 import BillingCard from "@/app/_components/billing/billing-card";
 import { getUserSubscriptionPlan } from "@/server/stripe";
+import { isUserAdminById } from "@/server/db/queries";
 
 export default async function Page() {
   const session = await auth();
   if (!session) redirect("/");
 
   const subscription = await getUserSubscriptionPlan(session.user.id);
+  const isAdmin = await isUserAdminById(session.user.id)
 
   return (
-    <NavbarLayout disableFooter={true} session={session}>
+    <NavbarLayout disableFooter={true} session={session} isAdmin={isAdmin}>
       <SidebarLayout
         sidebarItems={{ items: settingsNavItems }}
         title="Settings"
