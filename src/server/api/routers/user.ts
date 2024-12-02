@@ -2,26 +2,11 @@ import { DoNotCatchTRPCError } from "@/server/api/error";
 import { createTRPCRouter, protectedProcedure } from "@/server/api/trpc";
 import { getUserById, updateUserById } from "@/server/db/queries";
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
+import { accountFormSchema } from "../schemas";
 
 export const userRouter = createTRPCRouter({
   updateName: protectedProcedure
-    .input(
-      z.object({
-        name: z
-          .string()
-          .min(2, {
-            message: "Name must be at least 2 characters.",
-          })
-          .max(30, {
-            message: "Name must not be longer than 30 characters.",
-          })
-          .regex(/^[a-zA-Z\s]+$/, {
-            message:
-              "Name must only contain alphabetic characters and spaces (no numbers or special characters).",
-          }),
-      }),
-    )
+    .input(accountFormSchema)
     .mutation(async ({ ctx, input }) => {
       try {
         const userId = ctx.session.user.id;

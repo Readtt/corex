@@ -11,27 +11,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { accountFormSchema } from "@/server/api/schemas";
 import { api } from "@/trpc/react";
 import { type Session } from "@auth/core/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
-
-const accountFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    })
-    .regex(/^[a-zA-Z\s]+$/, {
-      message: "Name must only contain alphabetic characters and spaces (no numbers or special characters).",
-    }),
-});
+import { type z } from "zod";
 
 type AccountFormValues = z.infer<typeof accountFormSchema>;
 

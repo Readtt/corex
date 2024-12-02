@@ -7,7 +7,6 @@ import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { type Feature, type StripePlan } from "@/config";
@@ -31,14 +30,12 @@ function FeatureItem({ feature }: { feature: Feature }) {
       )}
       <span>{feature.text}</span>
       {feature.footnote && (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <HelpCircle className="size-4" />
-            </TooltipTrigger>
-            <TooltipContent>{feature.footnote}</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <HelpCircle className="size-4" />
+          </TooltipTrigger>
+          <TooltipContent>{feature.footnote}</TooltipContent>
+        </Tooltip>
       )}
     </li>
   );

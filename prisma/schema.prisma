@@ -53,6 +53,8 @@ model User {
     stripeSubscriptionId   String?   @unique
     stripePriceId          String?
     stripeCurrentPeriodEnd DateTime?
+
+    isAdmin Boolean @default(false)
 }
 
 model VerificationToken {
@@ -71,11 +73,20 @@ model Waitlist {
 }
 
 model Ticket {
-    id          String   @id @default(auto()) @map("_id") @db.ObjectId
+    id          String       @id @default(auto()) @map("_id") @db.ObjectId
     email       String?
     problem     String?
     severity    String?
     subject     String?
     description String?
-    createdAt   DateTime @default(now())
+    createdAt   DateTime     @default(now())
+    updatedAt   DateTime     @updatedAt
+    status      TicketStatus @default(OPEN)
+}
+
+enum TicketStatus {
+    OPEN
+    IN_PROGRESS
+    CLOSED
+    PENDING
 }
