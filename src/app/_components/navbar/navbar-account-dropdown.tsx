@@ -6,10 +6,10 @@ import {
   Loader2,
   LogOut,
   Settings,
-  User
+  User,
 } from "lucide-react";
 
-import { AvatarFallback } from "@/components/ui/avatar";
+import { AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -23,7 +23,6 @@ import {
 import config from "@/config";
 import { type Session } from "@auth/core/types";
 import { signOut } from "next-auth/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Avatar } from "../../../components/ui/avatar";
@@ -41,22 +40,10 @@ export function NavbarAccountDropdown({
       <DropdownMenuTrigger asChild>
         <Button className="aspect-square h-8 w-8 rounded-full bg-slate-400">
           <Avatar className="relative h-8 w-8">
-            {session?.user?.image ? (
-              <div className="relative aspect-square h-full w-full">
-                <Image
-                  fill
-                  loader={() => session.user?.image ?? ""}
-                  src={session?.user?.image}
-                  alt="profile picture"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            ) : (
-              <AvatarFallback>
-                <span className="sr-only">{session?.user?.name}</span>
-                <User className="h-4 w-4 text-zinc-600" />
-              </AvatarFallback>
-            )}
+            <AvatarImage src={session?.user?.image ?? ""} />
+            <AvatarFallback>
+              <User className="h-4 w-4 text-primary" />
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

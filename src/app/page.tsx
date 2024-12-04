@@ -13,10 +13,7 @@ import { isUserAdminById } from "@/server/db/queries";
 // https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
 // https://github.com/vercel/ai-chatbot
 // https://awesome-shadcn-ui.vercel.app/
-// TODO: Add tickets
-// TODO: use date-fns
 // TODO: Add email support later
-// TODO: add error component
 // TODO: Add SST help
 
 export default async function Page() {

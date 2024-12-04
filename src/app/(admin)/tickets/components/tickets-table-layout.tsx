@@ -12,8 +12,9 @@ import { useState } from "react";
 import { ticketsColumns } from "./tickets-columns";
 import { TicketsTable } from "./tickets-table";
 import { TicketDisplay } from "./ticket-display";
+import { type Session } from "next-auth";
 
-export default function TicketsTableLayout() {
+export default function TicketsTableLayout({session}: {session: Session}) {
   const [ticketDisplay, setTicketDisplay] = useState<{
     open: boolean;
     id?: string;
@@ -70,6 +71,7 @@ export default function TicketsTableLayout() {
         open={ticketDisplay.open}
         setIsOpen={(open) => setTicketDisplay({ open, id: ticketDisplay.id })}
         ticketId={ticketDisplay.id}
+        session={session}
       />
     </div>
   );

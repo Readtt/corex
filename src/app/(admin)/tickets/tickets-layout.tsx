@@ -23,9 +23,10 @@ import {
 } from "lucide-react";
 import OverviewCard from "./components/overview-card";
 import TicketsTableLayout from "./components/tickets-table-layout";
+import { Session } from "next-auth";
 
 // turn this into multiple components
-export default function TicketsLayout() {
+export default function TicketsLayout({session}: {session: Session}) {
   const queries = api.useQueries((t) => [
     // enable on overview value
     t.ticket.getTicketCount({}),
@@ -227,7 +228,7 @@ export default function TicketsLayout() {
           )}
         </TabsContent>
         <TabsContent value="tickets" className="space-x-4">
-          <TicketsTableLayout />
+          <TicketsTableLayout session={session} />
         </TabsContent>
       </Tabs>
     </div>

@@ -10,6 +10,7 @@ import {
   deleteTicketById,
   getRecentTickets,
   getRecentTicketsWithPagination,
+  getTicketById,
   getTicketCount,
   getTicketCountLastMonths,
   updateTicketById,
@@ -197,6 +198,26 @@ export const ticketRouter = createTRPCRouter({
       try {
         const { id, ...data } = input;
         return await updateTicketById(id, data);
+      } catch (error) {
+        if (error instanceof DoNotCatchTRPCError) {
+          throw error;
+        }
+
+        throw new TRPCError({
+          message: "There was a problem deleting the ticket.",
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    }),
+  getTicketById: adminProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ input }) => {
+      try {
+        return await getTicketById(input.id);
       } catch (error) {
         if (error instanceof DoNotCatchTRPCError) {
           throw error;

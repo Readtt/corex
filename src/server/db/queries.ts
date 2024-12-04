@@ -193,6 +193,16 @@ export async function deleteTicketById(id: string) {
   }
 }
 
+
+export async function getTicketById(id: string) {
+  try {
+    return await db.ticket.findFirst({ where: { id } });
+  } catch (error) {
+    console.error("Failed to get ticket by id from database");
+    throw error;
+  }
+}
+
 export async function getRecentTicketsWithPagination({
   page = 1,
   pageSize = 10,

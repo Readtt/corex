@@ -5,11 +5,10 @@ import { type ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-import { type RouterOutputs } from "@/trpc/react";
+import { TicketStatus } from "@prisma/client";
+import { type TicketsTableRow } from "./tickets-table";
 import { TicketsTableColumnHeader } from "./tickets-table-column-header";
 import { TicketsTableRowActions } from "./tickets-table-row-actions";
-import { TicketStatus } from "@prisma/client";
-import { TicketsTableRow } from "./tickets-table";
 
 export const ticketsColumns: ColumnDef<TicketsTableRow>[] = [
   {

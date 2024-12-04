@@ -11,7 +11,7 @@ import {
   getCoreRowModel,
   getFacetedRowModel,
   getFacetedUniqueValues,
-  useReactTable
+  useReactTable,
 } from "@tanstack/react-table";
 
 import {
@@ -23,8 +23,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { Button } from "@/components/ui/button";
-import { RouterOutputs } from "@/trpc/react";
+import { type RouterOutputs } from "@/trpc/react";
 import { Loader2, SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { TicketsTablePagination } from "./tickets-table-pagination";
@@ -32,6 +31,7 @@ import { TicketsTableToolbar } from "./tickets-table-toolbar";
 
 export type TicketsTableRow =
   RouterOutputs["ticket"]["getRecentTicketsWithPagination"]["tickets"][0];
+
 interface TicketsTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -137,29 +137,25 @@ export function TicketsTable<TData, TValue>({
               </TableRow>
             ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => {
-                const typedRow = row.original as TicketsTableRow;
                 return (
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
                   >
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell
+                        key={cell.id}
+                        onClick={() => {
+                          openTicket((row.original as TicketsTableRow).id);
+                        }}
+                        className="cursor-pointer"
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext(),
                         )}
                       </TableCell>
                     ))}
-                    <TableCell>
-                      <Button
-                        variant={"ghost"}
-                        size={"sm"}
-                        onClick={() => openTicket(typedRow.id)}
-                      >
-                        Details
-                      </Button>
-                    </TableCell>
                   </TableRow>
                 );
               })
