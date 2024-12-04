@@ -421,7 +421,7 @@ export function TicketDisplay({
               </div>
               <SheetFooter>
                 <Link
-                  className={buttonVariants({ variant: "default", className: "bg-blue-500 dark:text-foreground hover:bg-blue-400" })}
+                  className={buttonVariants({ variant: "default" })}
                   href={`mailto:${session.user.email}`}
                   target="_blank"
                 >

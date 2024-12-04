@@ -234,13 +234,11 @@ export async function getRecentTicketsWithPagination({
           ]),
         )
       : {};
-      console.log(where);
+
     const orderBy: Prisma.TicketFindManyArgs["orderBy"] =
       order && order.length > 0
         ? Object.fromEntries(order)
         : { createdAt: Prisma.SortOrder.desc };
-
-    console.log(where);
 
     const tickets = await db.ticket.findMany({
       skip,

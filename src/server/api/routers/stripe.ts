@@ -7,6 +7,7 @@ import { getBaseUrl } from "@/lib/utils";
 import { protectedProcedure } from "@/server/api/trpc";
 import { getUserSubscriptionPlan, stripe } from "@/server/stripe";
 import { DoNotCatchTRPCError } from "../error";
+import { env } from "@/env";
 
 const planNames = config.stripe.plans
   .filter(
@@ -149,7 +150,7 @@ export const stripeRouter = createTRPCRouter({
           plan
         ) {
           const planPriceId =
-            process.env.NODE_ENV === "production" ? plan.production : plan.test;
+            env.NODE_ENV === "production" ? plan.production : plan.test;
           const subscriptions = await stripe.subscriptions.retrieve(
             subscriptionPlan.stripeSubscriptionId,
           );
@@ -252,7 +253,7 @@ export const stripeRouter = createTRPCRouter({
           line_items: [
             {
               price:
-                process.env.NODE_ENV === "production"
+                env.NODE_ENV === "production"
                   ? plan.production
                   : plan.test,
               quantity: 1,

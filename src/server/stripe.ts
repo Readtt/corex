@@ -39,7 +39,7 @@ export async function getUserSubscriptionPlan(userId?: string) {
   const plan = isSubscribed
     ? PLANS.find(
         (plan) =>
-          (process.env.NODE_ENV === "production"
+          (env.NODE_ENV === "production"
             ? plan.price.priceIds.production
             : plan.price.priceIds.test) === dbUser.stripePriceId,
       )

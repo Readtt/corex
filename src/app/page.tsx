@@ -13,8 +13,10 @@ import { isUserAdminById } from "@/server/db/queries";
 // https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
 // https://github.com/vercel/ai-chatbot
 // https://awesome-shadcn-ui.vercel.app/
+// https://www.youtube.com/watch?v=_KhrGFV_Npw
 // TODO: Add email support later
 // TODO: Add SST help
+// TODO: add rate limiting
 
 export default async function Page() {
   const session = await auth();

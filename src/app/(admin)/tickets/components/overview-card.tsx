@@ -42,7 +42,7 @@ export default function OverviewCard({ chartData }: { chartData: ChartData }) {
     }),
     [chartData],
   );
-  console.log(chartData);
+
   return (
     <Card className="col-span-4">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
