@@ -23,7 +23,7 @@ import {
 } from "lucide-react";
 import OverviewCard from "./components/overview-card";
 import TicketsTableLayout from "./components/tickets-table-layout";
-import { Session } from "next-auth";
+import { type Session } from "next-auth";
 
 // turn this into multiple components
 export default function TicketsLayout({session}: {session: Session}) {

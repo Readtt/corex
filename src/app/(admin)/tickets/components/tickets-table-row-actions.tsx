@@ -17,11 +17,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { api, type RouterOutputs } from "@/trpc/react";
+import { api } from "@/trpc/react";
 import { TicketStatus } from "@prisma/client";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { TicketsTableRow } from "./tickets-table";
+import { type TicketsTableRow } from "./tickets-table";
 
 interface TicketsTableRowActionsProps<TData> {
   row: Row<TData>;

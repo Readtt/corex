@@ -16,7 +16,7 @@ export default async function Page() {
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <div className="absolute inset-0 bg-zinc-900" />
         <div className="relative z-20 flex items-center text-lg font-medium">
-          <NavbarLogo />
+          <NavbarLogo isAdmin={false} />
         </div>
         <div className="relative z-20 mt-auto">
           <blockquote className="space-y-2">
@@ -29,7 +29,7 @@ export default async function Page() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <div className="mb-6 flex justify-center lg:hidden">
-              <NavbarLogo />
+              <NavbarLogo isAdmin={false} />
             </div>
             <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
             <p className="text-sm text-muted-foreground">

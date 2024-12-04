@@ -5,7 +5,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "@/env";
 import { db } from "@/server/db";
-import z from "zod";
+// import z from "zod";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -28,10 +28,10 @@ declare module "next-auth" {
   // }
 }
 
-const credentialsSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
+// const credentialsSchema = z.object({
+//   email: z.string().email(),
+//   password: z.string(),
+// });
 
 /**
  * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
