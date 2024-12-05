@@ -38,7 +38,7 @@ export function NavbarAccountDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="aspect-square h-8 w-8 rounded-full bg-slate-400">
+        <Button size={"icon"} className="h-8 w-8 rounded-full bg-zinc-500">
           <Avatar className="relative h-8 w-8">
             <AvatarImage src={session?.user?.image ?? ""} />
             <AvatarFallback>
