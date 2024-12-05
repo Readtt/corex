@@ -8,6 +8,13 @@ import SidebarContent from "@/app/_components/sidebar/sidebar-content";
 import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
 import { CreditCard, User } from "lucide-react";
 import { isUserAdminById } from "@/server/db/queries";
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false
+  }
+};
 
 export const settingsNavItems = [
   {

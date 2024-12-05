@@ -2,6 +2,14 @@ import { auth } from "@/server/auth";
 import NavbarLayout from "@/app/_components/navbar/navbar-layout";
 import { List, ListItem } from "@/components/ui/list";
 import { isUserAdminById } from "@/server/db/queries";
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true
+  }
+};
 
 export default async function Page() {
   const session = await auth();

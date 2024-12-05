@@ -3,6 +3,11 @@ import PricingLayout from "@/app/_components/pricing/pricing-layout";
 import { auth } from "@/server/auth";
 import { isUserAdminById } from "@/server/db/queries";
 import { getUserSubscriptionPlan } from "@/server/stripe";
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pricing"
+};
 
 export default async function Page() {
   const session = await auth();

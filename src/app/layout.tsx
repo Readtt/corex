@@ -8,9 +8,15 @@ import { Toaster } from "@/components/ui/sonner";
 import config from "@/config";
 
 export const metadata: Metadata = {
-  title: config.site.name,
+  title: {
+    default: config.site.name,
+    template: "%s - " + config.site.name,
+  },
   description: config.site.tagline,
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  icons: [{ rel: "icon", url: "/favicon.svg" }],
+  openGraph: {
+    images: [{ url: "/opengraph-image.png" }],
+  },
 };
 
 export default function RootLayout({
@@ -19,9 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
         <Toaster />
       </body>
     </html>

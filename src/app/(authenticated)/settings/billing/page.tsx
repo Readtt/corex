@@ -9,6 +9,13 @@ import { settingsNavItems } from "../page";
 import BillingCard from "@/app/_components/billing/billing-card";
 import { getUserSubscriptionPlan } from "@/server/stripe";
 import { isUserAdminById } from "@/server/db/queries";
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false
+  }
+};
 
 export default async function Page() {
   const session = await auth();

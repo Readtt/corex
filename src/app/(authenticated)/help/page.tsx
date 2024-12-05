@@ -3,6 +3,13 @@ import TicketLayout from "@/app/_components/ticket/ticket-layout";
 import { auth } from "@/server/auth";
 import { isUserAdminById } from "@/server/db/queries";
 import { redirect } from "next/navigation";
+import { type Metadata } from "next";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false
+  }
+};
 
 export default async function Page() {
   const session = await auth();
