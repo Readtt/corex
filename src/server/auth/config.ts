@@ -42,6 +42,7 @@ export const authConfig = {
   pages: {
     signIn: "/auth/signin",
     newUser: "/",
+    error: "/auth/signin"
 
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=

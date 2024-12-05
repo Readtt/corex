@@ -5,6 +5,7 @@ import NavbarLogo from "@/app/_components/navbar/navbar-logo";
 import config from "@/config";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import SigninError from "./signin-error";
 
 export default async function Page() {
   const session = await auth();
@@ -13,6 +14,7 @@ export default async function Page() {
 
   return (
     <div className="container relative grid h-screen items-center justify-center sm:min-w-full md:grid md:min-w-full lg:max-w-none lg:grid-cols-2 lg:flex-col lg:px-0">
+      <SigninError/>
       <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
         <div className="absolute inset-0 bg-zinc-900" />
         <div className="relative z-20 flex items-center text-lg font-medium">
