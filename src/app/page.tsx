@@ -14,6 +14,8 @@ import { isUserAdminById } from "@/server/db/queries";
 // https://github.com/vercel/ai-chatbot
 // https://awesome-shadcn-ui.vercel.app/
 // https://www.youtube.com/watch?v=_KhrGFV_Npw
+// https://github.com/opennextjs/opennextjs-aws/issues/385
+// https://www.youtube.com/watch?v=1OqMQPx8Jno
 // TODO: Add email support later
 // TODO: Add SST help
 // TODO: add rate limiting
