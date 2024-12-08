@@ -2,7 +2,7 @@
 
 The template for building cheap fully customizable, and easily scalable SaaS solutions in Next.js.
 
-📘 Learn More: [Documentation](https://fumadocs.vercel.app).
+📘 Learn More: [Documentation]().
 
 ## Features
 - [Next.js](https://nextjs.org)
