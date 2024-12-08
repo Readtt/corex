@@ -36,7 +36,7 @@ export function NavbarAccountDropdown({
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button size={"icon"} className="h-8 w-8 rounded-full bg-zinc-500">
           <Avatar className="relative h-8 w-8">

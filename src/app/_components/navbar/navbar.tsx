@@ -8,7 +8,7 @@ export default function Navbar({ session, isAdmin }: { session: Session | null, 
   return (
     <section
       className={
-        "sticky z-30 flex h-[56px] w-full items-center justify-center border-b bg-background/75 px-6 backdrop-blur-lg"
+        "flex h-[56px] w-full items-center justify-center border-b bg-background/75 px-6 backdrop-blur-lg"
       }
     >
       <div className="container">

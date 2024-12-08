@@ -8,7 +8,9 @@ export default function Providers({
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <TRPCReactProvider>
-        <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
+        <TooltipProvider delayDuration={0}>
+          {children}
+        </TooltipProvider>
       </TRPCReactProvider>
     </ThemeProvider>
   );

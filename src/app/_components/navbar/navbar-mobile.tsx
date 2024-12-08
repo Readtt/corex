@@ -97,6 +97,7 @@ export default function NavbarMobile({ session, isAdmin }: { session: Session | 
           <div className="my-8 flex flex-col gap-4">
             <NavbarItem href="/">Home</NavbarItem>
             <NavbarItem href="/pricing">Pricing</NavbarItem>
+            <NavbarItem href="/docs">Docs</NavbarItem>
           </div>
           <div className="border-t pt-4">
             {session && (

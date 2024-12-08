@@ -45,6 +45,7 @@ export default function NavbarMain({ session, isAdmin }: { session: Session | nu
         <div className="flex items-center">
           <NavbarItem href="/">Home</NavbarItem>
           <NavbarItem href="/pricing">Pricing</NavbarItem>
+          <NavbarItem href="/docs">Docs</NavbarItem>
         </div>
       </div>
       <div className="flex gap-4">

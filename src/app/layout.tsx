@@ -1,11 +1,9 @@
-import "@/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
-
-import Providers from "./providers";
 import { Toaster } from "@/components/ui/sonner";
 import config from "@/config";
+import "@/styles/globals.css";
+import { GeistSans } from "geist/font/sans";
+import { type Metadata } from "next";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: {

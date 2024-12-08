@@ -3,8 +3,11 @@
  * for Docker builds.
  */
 import "./src/env.js";
+import { createMDX } from 'fumadocs-mdx/next';
+
+const withMDX = createMDX();
 
 /** @type {import("next").NextConfig} */
 const config = {};
 
-export default config;
+export default withMDX(config);

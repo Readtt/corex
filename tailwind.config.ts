@@ -1,10 +1,12 @@
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 import tailwindcssAnimate from "tailwindcss-animate";
+import { createPreset } from 'fumadocs-ui/tailwind-plugin';
 
 export default {
   darkMode: ["class"],
-  content: ["./src/**/*.tsx"],
+  presets: [createPreset()],
+  content: ["./node_modules/fumadocs-ui/dist/**/*.js","./src/**/*.tsx", './content/**/*.mdx',],
   theme: {
     extend: {
       fontFamily: {

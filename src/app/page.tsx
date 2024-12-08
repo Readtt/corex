@@ -19,6 +19,7 @@ import { isUserAdminById } from "@/server/db/queries";
 // TODO: Add email support later
 // TODO: add rate limiting
 // TODO: add documentation
+// TODO: add custom domains
 
 export default async function Page() {
   const session = await auth();

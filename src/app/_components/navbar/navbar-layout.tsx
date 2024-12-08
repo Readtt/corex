@@ -20,15 +20,12 @@ export default function NavbarLayout({
   isAdmin: boolean;
 }) {
   return (
-    <div className={cn("min-h-screen overflow-x-hidden", className)}>
-      <Navbar session={session} isAdmin={isAdmin} />
-      {isAdmin && <AdminNavbar />} 
-      {/* TODO: OVERFLOW ISSUE  */}
-
-      <div className={cn("flex flex-col overflow-x-hidden", {
-        "h-[calc(100vh-56px)]": !isAdmin,
-        "h-[calc(100vh-86px)]": isAdmin
-      })}>
+    <div className={cn("min-h-screen", className)}>
+      <div className="sticky top-0 z-50">
+        <Navbar session={session} isAdmin={isAdmin} />
+        {isAdmin && <AdminNavbar />}
+      </div>
+      <div className={cn("flex flex-col overflow-x-hidden")}>
         <div className="flex w-full justify-center">{children}</div>
         {!disableFooter && <Footer />}
       </div>
