@@ -6,9 +6,9 @@ import { redirect } from "next/navigation";
 
 import SidebarContent from "@/app/_components/sidebar/sidebar-content";
 import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
-import { CreditCard, User } from "lucide-react";
 import { isUserAdminById } from "@/server/db/queries";
 import { type Metadata } from "next";
+import { settingsNavItems } from "./nav-items";
 
 export const metadata: Metadata = {
   robots: {
@@ -16,31 +16,10 @@ export const metadata: Metadata = {
   }
 };
 
-export const settingsNavItems = [
-  {
-    title: (
-      <div className="flex flex-row">
-        <User className="mr-2 h-4 w-4" />
-        Account
-      </div>
-    ),
-    href: "/settings",
-  },
-  {
-    title: (
-      <div className="flex flex-row">
-        <CreditCard className="mr-2 h-4 w-4" />
-        Billing
-      </div>
-    ),
-    href: "/settings/billing",
-  },
-];
-
 export default async function Page() {
   const session = await auth();
 
-  if (!session) redirect("/");
+  if (!session) redirect("/auth/signin");
 
   const isAdmin = await isUserAdminById(session.user.id)
 

@@ -1,0 +1,115 @@
+---
+title: Project Structure
+description: Introduction to all folders and files in this project that can be modified for your preferences
+---
+
+<Callout title="Note">
+  To understand the project structure of the NextJS files and folders, you can
+  view their
+  [documentation](https://nextjs.org/docs/app/getting-started/project-structure)
+</Callout>
+
+---
+
+## Folder and file conventions
+
+### Top-level folders
+
+Top level folders are used to organize your application's code.
+
+| **Folder** | **Description**             |
+| ---------- | --------------------------- |
+| `prisma`   | Database configuration      |
+| `content`  | Documentation related files |
+
+### Top-level files
+
+Top-level files are used to configure your application, manage dependencies, run middleware, integrate monitoring tools, and define environment variables.
+
+| **File**             | **Description**                                                                                           |
+| -------------------- | --------------------------------------------------------------------------------------------------------- |
+| `tailwind.config.ts` | Configuration file for Tailwind CSS, defining custom themes, colors, plugins, and other styles.           |
+| `sst.config.ts`      | Configuration file for SST (Serverless Stack), used to define and deploy serverless infrastructure on AWS |
+| `source.config.ts`   | Configuration file for managing documentation path                                                        |
+| `components.json`    | shadcn file defining settings for their component library                                                 |
+
+### Second-level files (src)
+
+| **File**    | **Description**                                   |
+| ----------- | ------------------------------------------------- |
+| `env.js`    | File to import when using env variables, typesafe |
+| `config.ts` | All site configuration, including stripe plans    |
+
+### Second-level folders (src)
+
+| **Folders**  | **Description**                                 |
+| ------------ | ----------------------------------------------- |
+| `trpc`       | Query trpc client                               |
+| `styles`     | Where global styles reside                      |
+| `server`     | Where server utilities reside                   |
+| `lib`        | All helper functions                            |
+| `components` | Smaller UI components that can be used anywhere |
+
+### Server files (src/server)
+
+| **File**         | **Description**                                                                                     |
+| ---------------- | --------------------------------------------------------------------------------------------------- |
+| `api/trpc.ts`    | tRPC procedures                                                                                     |
+| `api/schemas.ts` | tRPC schemas to be used anywhere                                                                    |
+| `api/root.ts`    | Exporting all routes                                                                                |
+| `api/error.ts`   | Special tRPC helper to throw an error inside a mutation or query while preserving the error message |
+| `api/routers/*`  | All routers based on db collections and use case                                                    |
+| `auth/index.ts`  | Exporting default auth functions                                                                    |
+| `auth/config.ts` | Managing all authentication providers and settings                                                  |
+| `db/index.ts`    | Initializing Prisma for development and production                                                  |
+| `db/queries.ts`  | All db queries that are used in the codebase                                                        |
+| `stripe.ts`      | Getting the users subscription plan                                                                 |
+
+### Routing files
+
+| **File**            | **Description**             |
+| ------------------- | --------------------------- |
+| `layout.tsx`        | Layout and metadata for SEO |
+| `error.tsx`         | Error UI                    |
+| `not-found.tsx`     | Not found UI                |
+| `layout.config.tsx` | Documentation config        |
+
+### Route groups
+
+| **Folder**          | **Description**        |
+| ------------------- | ---------------------- |
+| `(admin)`           | Admin routes           |
+| `(unauthenticated)` | Unauthenticated routes |
+| `(authenticated)`   | Authenticated routes   |
+
+### Nested routes
+
+| **Folder**                        | **Description**         |
+| --------------------------------- | ----------------------- |
+| `(admin)/tickets`                 | Manage all user tickets |
+| `(authenticated)/help`            | Open a ticket           |
+| `(authenticated)/settings`        | Manage global settings  |
+| `(unauthenticated)/auth`          | Signin page             |
+| `(unauthenticated)/docs`          | Documentation           |
+| `(unauthenticated)/legal`         | Legal pages             |
+| `(unauthenticated)/legal/privacy` | Privacy policy          |
+| `(unauthenticated)/legal/terms`   | Terms of service        |
+| `(unauthenticated)/pricing`       | Pricing page            |
+| `api`                             | API route               |
+| `api/auth`                        | NextAuth route          |
+| `api/stripe-webhook`              | Stripe webhook route    |
+| `api/trpc`                        | tRPC route              |
+
+### Private folders
+
+| **Folder**    | **Description**                                          |
+| ------------- | -------------------------------------------------------- |
+| `_components` | Where large, reusable components used in pages are found |
+
+### SEO
+
+| **File**              | **Description**                            |
+| --------------------- | ------------------------------------------ |
+| `layout.tsx`          | Metadata for SEO is contained in this file |
+| `favicon.svg`         | Page favicon                               |
+| `opengraph-image.png` | Image to show on site previews             |

@@ -3,13 +3,13 @@ import { auth } from "@/server/auth";
 import NavbarLayout from "@/app/_components/navbar/navbar-layout";
 import { redirect } from "next/navigation";
 
+import BillingCard from "@/app/_components/billing/billing-card";
 import SidebarContent from "@/app/_components/sidebar/sidebar-content";
 import SidebarLayout from "@/app/_components/sidebar/sidebar-layout";
-import { settingsNavItems } from "../page";
-import BillingCard from "@/app/_components/billing/billing-card";
-import { getUserSubscriptionPlan } from "@/server/stripe";
 import { isUserAdminById } from "@/server/db/queries";
+import { getUserSubscriptionPlan } from "@/server/stripe";
 import { type Metadata } from "next";
+import { settingsNavItems } from "../nav-items";
 
 export const metadata: Metadata = {
   robots: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const session = await auth();
-  if (!session) redirect("/");
+  if (!session) redirect("/auth/signin");
 
   const subscription = await getUserSubscriptionPlan(session.user.id);
   const isAdmin = await isUserAdminById(session.user.id)

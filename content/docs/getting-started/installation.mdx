@@ -1,0 +1,157 @@
+---
+title: Installation
+description: Guide to installing this project onto your operating system of choice
+---
+
+### System Requirements
+- [Node.js 18.18](https://nodejs.org/en) or later.
+- macOS, Windows (with WSL), and Linux are supported.
+
+<Callout title="Note">
+  To understand the installation processes of NextJS, you can view their [documentation](https://nextjs.org/docs/app/getting-started/installation)
+</Callout>
+
+---
+
+### Automatic installation
+
+To deploy with [SST](https://sst.dev/) on Windows, you have to use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install "Instructions"). If you prefer to use a different deployment option, you can ignore the steps involving WSL and clone the project on your machine directly.
+
+<Tabs items={["Windows", "macOS / Linux"]}>
+
+<Tab value="Windows">
+<Callout title="Note">
+  If you decide to deploy with something other than SST, you must delete all
+  related components and uninstall everything related to SST before running `npm install` otherwise the project will not run on Windows.
+</Callout>
+
+For Windows use, you must use WSL with the **Ubuntu** distribution.
+
+```shell
+wsl --install -d Ubuntu
+wsl --set-default Ubuntu
+```
+
+Set the default user to **root**
+
+```shell
+wsl.exe
+nano /etc/wsl.conf
+```
+
+`/etc/wsl.conf`
+
+```
+[boot]
+systemd=true
+[user]
+default=root
+```
+
+Use this command to restart WSL with your new changes
+
+```shell
+wsl.exe --shutdown
+```
+
+Now you must create a new directory to store the project (outside of /mnt/c, hence needing default root access).
+
+```shell
+wsl.exe
+mkdir /development
+cd /development
+```
+
+You can now clone the project with `git clone`
+
+```shell
+git clone https://github.com/Readtt/corex.git
+```
+
+</Tab>
+
+<Tab value="macOS / Linux">
+  [SST CLI](https://sst.dev/docs/reference/cli/) has full support with macOS and Linux. 
+  
+  ```shell 
+  git clone https://github.com/Readtt/corex.git 
+  ```
+</Tab>
+
+</Tabs>
+
+### Install global CLI tools
+<Tabs items={["Windows", "macOS / Linux"]}>
+
+<Tab value="Windows">
+For Windows use, you must install all CLI tools using WSL.
+
+1. Install the [Stripe CLI with apt](https://docs.stripe.com/stripe-cli?install-method=apt)
+2. Authenticate with `stripe login`
+3. (Optional) Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+</Tab>
+
+<Tab value="macOS / Linux">
+For macOS and Linux use, install all CLI tools normally.
+
+1. Install the [Stripe CLI](https://docs.stripe.com/stripe-cli)
+2. Authenticate with `stripe login`
+3. (Optional) Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+</Tab>
+
+</Tabs>
+
+### Setting up environment variables
+```shell
+# Since the ".env" file is gitignored, you can use the ".env.example" file to
+# build a new ".env" file when you clone the repo. Keep this file up-to-date
+# when you add new variables to `.env`.
+
+# This file will be committed to version control, so make sure not to have any
+# secrets in it. If you are cloning this repo, create a copy of this file named
+# ".env" and populate it with your secrets.
+
+# Get the Database URL from your preferred database. 
+DATABASE_URL='mysql://YOUR_MYSQL_URL_HERE?sslaccept=strict'
+
+# Authentication
+GOOGLE_CLIENT_ID='<GOOGLE_CLIENT_ID>'
+GOOGLE_CLIENT_SECRET='<GOOGLE_CLIENT_SECRET>'
+
+# You can generate a new secret on the command line with:
+# openssl rand -base64 32
+# https://next-auth.js.org/configuration/options#secret
+AUTH_SECRET='<AUTH_SECRET>'
+AUTH_TRUST_HOST='http://localhost:3000'
+
+# Stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY='pk_12345'
+STRIPE_SECRET_KEY='sk_12345'
+STRIPE_WEBHOOK_SECRET='<STRIPE_WEBHOOK_SECRET>'
+
+# SST
+AWS_SECRET_ACCESS_KEY='<AWS_SECRET_ACCESS_KEY>'
+AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
+```
+- `DATABASE_URL` is the URL Prisma uses to connect to your database (default is postgres)
+  - My recommendation is to try using [railway.app](https://railway.app) combined with SST for an extremely cheap deployment solution (max ~$15/month, don't take my word for it)
+- `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are used to connect [Google authentication](https://next-auth.js.org/providers/google) to your app
+- `AUTH_SECRET` is the secret key for your authentication
+- `AUTH_TRUST_HOST` allows authentication to work on a local build where only HTTPS is allowed
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_SECRET_KEY` are used to connect to [Stripe](https://docs.stripe.com/keys)
+- `STRIPE_WEBHOOK_SECRET` is used in development and production
+  - When used in development, copy the secret printed when the server runs and paste it into your `.env` file
+  ```
+  [stripe] Ready! You are using Stripe API Version [2024-11-20.acacia]. Your webhook signing secret is <KEY> (^C to quit)
+  ```
+  - When used in production, setup a [new webhook endpoint](https://docs.stripe.com/development/dashboard/webhooks) with the `invoice.payment_succeeded` and `checkout.session.completed` events
+- `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID` are used with SST for [AWS authentication with IAM Identity Center](https://www.youtube.com/watch?v=_KhrGFV_Npw)
+  - After following this tutorial, you want to go to __IAM -> Users__ and create a new user
+  - Choose __Attach policies directly__ and select `AdministratorAccess` and create the user
+  - Select the user in the table and go to __Security Credentials__ and create a __access key__ with the __other__ option selected
+  - You can now paste those credentials inside your `.env` file
+
+### Run the development server
+1. Run `npm install` to install all dependencies
+2. Run `npm run dev` to start the development server, Prisma Studio and the Stripe Webhook process
+3. Run `sst dev` to start the development server on AWS to test SST components locally (you won't need this if you are only using SST for deployment and not changing internal components)

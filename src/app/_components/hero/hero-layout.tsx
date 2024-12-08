@@ -32,7 +32,13 @@ export default function HeroLayout({ session }: { session: Session | null }) {
           </div>
           <div className="mt-4 flex justify-center gap-2">
             {session ? (
-              <Button size={"lg"} className="text-lg">
+              <Button
+                size={"lg"}
+                className="text-lg"
+                onClick={() => {
+                  router.push("/docs/getting-started");
+                }}
+              >
                 Explore <ChevronRight />
               </Button>
             ) : (

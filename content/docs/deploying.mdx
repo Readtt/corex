@@ -1,0 +1,49 @@
+---
+title: Deploying
+description: All things related to deployment with SST, Prisma, Stripe and Google
+---
+
+<Callout title="Note">
+  Before continuting, follow the [NextJS guide on
+  deployment](https://nextjs.org/docs/app/building-your-application/deploying)
+  to optimize your code ONLY and adding whatever features you want in
+  production. The rest of the instructions will be provided here.
+</Callout>
+
+---
+
+## Production environment variables
+
+Copy all local environment variables from `.env` into `.env.production` and start changing environment variables to work in production.
+
+### SST
+
+Read this [overview](https://opennext.js.org/aws) of the limitations and functionalities of using SST as a deployment option for production and [this](https://sst.dev/docs/component/aws/nextjs) reference document to different components available in SST.
+
+### Prisma
+
+Upgrade your chosen database to a production ready plan.
+
+### Stripe
+
+1. Disable test mode
+2. Go to **Product catalog** and under your products menu, click **Copy to live mode**
+3. Navigate to `/src/config.ts` and update the `production` field under `priceIds`
+4. Setup a [new webhook endpoint](https://docs.stripe.com/development/dashboard/webhooks) with the `invoice.payment_succeeded` and `checkout.session.completed` events
+5. Copy your new `STRIPE_WEBHOOK_SECRET` and paste it into `.env.production`
+
+### Google
+
+1. Navigate to your Google Console
+2. Enter **APIs & Services -> Credentials**
+3. Click your application and update the **Authorised redirect URIs** to include your production URL
+4. Enter **APIs & Services -> OAuth consent screen**
+5. Click **PUBLISH APP** and follow instructions
+
+## Final deployment
+
+To deploy to production, run this single command
+
+```shell
+sst deploy --stage production
+```
