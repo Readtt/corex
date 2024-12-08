@@ -40,10 +40,18 @@ Upgrade your chosen database to a production ready plan.
 4. Enter **APIs & Services -> OAuth consent screen**
 5. Click **PUBLISH APP** and follow instructions
 
-## Final deployment
+## Deploying with SST
 
+### Deploying
 To deploy to production, run this single command
 
 ```shell
 sst deploy --stage production
+```
+
+### Removing your deployment
+To remove your production deployment from aws, run this command
+
+```shell
+sst remove --stage production
 ```

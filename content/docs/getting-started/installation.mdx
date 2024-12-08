@@ -3,7 +3,7 @@ title: Installation
 description: Guide to installing this project onto your operating system of choice
 ---
 
-### System Requirements
+## System Requirements
 - [Node.js 18.18](https://nodejs.org/en) or later.
 - macOS, Windows (with WSL), and Linux are supported.
 
@@ -13,7 +13,7 @@ description: Guide to installing this project onto your operating system of choi
 
 ---
 
-### Automatic installation
+## Automatic installation
 
 To deploy with [SST](https://sst.dev/) on Windows, you have to use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install "Instructions"). If you prefer to use a different deployment option, you can ignore the steps involving WSL and clone the project on your machine directly.
 
@@ -80,7 +80,7 @@ git clone https://github.com/Readtt/corex.git
 
 </Tabs>
 
-### Install global CLI tools
+## Install global CLI tools
 <Tabs items={["Windows", "macOS / Linux"]}>
 
 <Tab value="Windows">
@@ -101,7 +101,7 @@ For macOS and Linux use, install all CLI tools normally.
 
 </Tabs>
 
-### Setting up environment variables
+## Setting up environment variables
 ```shell
 # Since the ".env" file is gitignored, you can use the ".env.example" file to
 # build a new ".env" file when you clone the repo. Keep this file up-to-date
@@ -151,7 +151,14 @@ AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
   - Select the user in the table and go to __Security Credentials__ and create a __access key__ with the __other__ option selected
   - You can now paste those credentials inside your `.env` file
 
-### Run the development server
+## Run the development server
 1. Run `npm install` to install all dependencies
 2. Run `npm run dev` to start the development server, Prisma Studio and the Stripe Webhook process
 3. Run `sst dev` to start the development server on AWS to test SST components locally (you won't need this if you are only using SST for deployment and not changing internal components)
+
+## Removing your SST development deployment
+
+To remove your production deployment from aws, run this command
+```shell
+sst remove --stage development
+```

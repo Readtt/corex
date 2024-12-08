@@ -13,9 +13,6 @@ import { isUserAdminById } from "@/server/db/queries";
 // https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
 // https://github.com/vercel/ai-chatbot
 // https://awesome-shadcn-ui.vercel.app/
-// TODO: Add email support later
-// TODO: add rate limiting
-
 export default async function Page() {
   const session = await auth();
   const subscription = await getUserSubscriptionPlan(session?.user.id);
