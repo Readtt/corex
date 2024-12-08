@@ -2,7 +2,7 @@
 
 The template for building cheap fully customizable, and easily scalable SaaS solutions in Next.js.
 
-For now, try following the instructions in `content/getting-started/installation`
+For now, try following the instructions in `content/docs/getting-started/installation`
 
 ## Features
 - [Next.js](https://nextjs.org)
