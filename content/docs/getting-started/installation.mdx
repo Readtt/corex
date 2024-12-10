@@ -111,8 +111,11 @@ For macOS and Linux use, install all CLI tools normally.
 # secrets in it. If you are cloning this repo, create a copy of this file named
 # ".env" and populate it with your secrets.
 
-# Get the Database URL from your preferred database. 
-DATABASE_URL='mysql://YOUR_MYSQL_URL_HERE?sslaccept=strict'
+# Connect to Supabase via connection pooling with Supavisor.
+DATABASE_URL="postgres://postgres.[your-supabase-project]:[password]@aws-0-[aws-region].pooler.supabase.com:6543/postgres?pgbouncer=true"
+
+# Direct connection to the database. Used for migrations.
+DIRECT_URL="postgres://postgres.[your-supabase-project]:[password]@aws-0-[aws-region].pooler.supabase.com:5432/postgres"
 
 # Authentication
 GOOGLE_CLIENT_ID='<GOOGLE_CLIENT_ID>'
@@ -134,7 +137,7 @@ AWS_SECRET_ACCESS_KEY='<AWS_SECRET_ACCESS_KEY>'
 AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
 ```
 - `DATABASE_URL` is the URL Prisma uses to connect to your database (default is postgres)
-  - My recommendation is to try using [railway.app](https://railway.app) combined with SST for an extremely cheap deployment solution (max ~$15/month, don't take my word for it)
+- `DIRECT_URL` is the direct connection to the database which is used for migrations.
 - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are used to connect [Google authentication](https://next-auth.js.org/providers/google) to your app
 - `AUTH_SECRET` is the secret key for your authentication
 - `AUTH_TRUST_HOST` allows authentication to work on a local build where only HTTPS is allowed
