@@ -27,10 +27,12 @@ export function ListItem({
       <span className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-secondary font-mono text-xs text-primary">
         {number}
       </span>
-      <div>
-        <div className="mb-2 flex items-center justify-between">
-          <h3 className="font-medium">{children}</h3>
-        </div>
+      <div
+        className={cn("flex-start mb-2 flex h-min", {
+          "flex-col": description,
+        })}
+      >
+        <span className="font-medium">{children}</span>
         {description && (
           <p className="text-sm text-muted-foreground">{description}</p>
         )}
