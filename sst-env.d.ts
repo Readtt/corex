@@ -6,9 +6,5 @@ import "sst"
 export {}
 declare module "sst" {
   export interface Resource {
-    "CoreX": {
-      "type": "sst.aws.Nextjs"
-      "url": string
-    }
   }
 }
