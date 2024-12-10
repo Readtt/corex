@@ -15,6 +15,10 @@ export default $config({
   },
   async run() {
     new sst.aws.Nextjs("MyWeb", {
+      domain: {
+        name: "corex.click",
+        redirects: ["www.corex.click"]
+      },
       environment: {
         AUTH_SECRET: process.env.AUTH_SECRET!,
         GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID!,
