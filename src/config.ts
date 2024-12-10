@@ -88,7 +88,7 @@ const config = {
           amount: 9.99,
           priceIds: {
             test: "price_1QQP2FGO8j9YkwYNngYSaekr",
-            production: "",
+            production: "price_1QQP2FGO8j9YkwYNngYSaekr",
           },
           frequency: "Per month"
         },
@@ -119,7 +119,7 @@ const config = {
           amount: 99.99,
           priceIds: {
             test: "price_1QQP2mGO8j9YkwYNd5Lb61dR",
-            production: "",
+            production: "price_1QQP2mGO8j9YkwYNd5Lb61dR",
           },
           frequency: "Per month"
         },
