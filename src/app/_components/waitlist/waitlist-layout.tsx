@@ -16,7 +16,7 @@ export default function WaitlistLayout() {
             </p>
           </div>
         </div>
-        <div className="mx-auto max-w-screen-md gap-6 p-10">
+        <div className="mx-auto md:max-w-screen-md gap-6 p-2 md:p-10">
           <WaitlistCard />
         </div>
       </div>

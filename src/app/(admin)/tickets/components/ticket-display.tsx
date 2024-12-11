@@ -276,8 +276,8 @@ export function TicketDisplay({
                   label="Severity"
                   tooltip="How severe this ticket should be taken"
                 >
-                  <div className="flex flex-row gap-2">
-                    <Badge variant="secondary">
+                  <div className="flex flex-col sm:flex-row gap-2">
+                    <Badge variant="secondary" className="w-fit">
                       <div
                         className={cn("mr-2 h-2 w-2 rounded-full", {
                           "bg-yellow-500": ticket?.severity == "Low",
