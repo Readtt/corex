@@ -10,9 +10,6 @@ import StatsLayout from "./_components/stats/stats-layout";
 import WaitlistLayout from "./_components/waitlist/waitlist-layout";
 import { isUserAdminById } from "@/server/db/queries";
 
-// https://github.com/shadcn-ui/ui/tree/main/apps/www/app/(app)/examples
-// https://github.com/vercel/ai-chatbot
-// https://awesome-shadcn-ui.vercel.app/
 export default async function Page() {
   const session = await auth();
   const subscription = await getUserSubscriptionPlan(session?.user.id);
