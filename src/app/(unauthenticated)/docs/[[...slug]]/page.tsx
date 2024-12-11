@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { source } from "@/lib/source";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
 import {
   DocsBody,
   DocsDescription,
@@ -23,7 +25,7 @@ export default async function Page(props: {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents, Tab: Tab, Tabs: Tabs }} />
+        <MDX components={{ ...defaultMdxComponents, Tab: Tab, Tabs: Tabs, img: (props) => <ImageZoom {...(props as any)} /> }} />
       </DocsBody>
     </DocsPage>
   );
