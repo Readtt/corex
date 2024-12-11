@@ -74,7 +74,7 @@ export const stripeRouter = createTRPCRouter({
         if (error instanceof DoNotCatchTRPCError) {
           throw error;
         }
-        console.log(error);
+
         throw new TRPCError({
           message: "There was a problem trying to cancel your subscription.",
           code: "INTERNAL_SERVER_ERROR",

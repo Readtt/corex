@@ -135,6 +135,9 @@ STRIPE_WEBHOOK_SECRET='<STRIPE_WEBHOOK_SECRET>'
 # SST
 AWS_SECRET_ACCESS_KEY='<AWS_SECRET_ACCESS_KEY>'
 AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
+
+# Site (used for production)
+# SITE_URL='<YOUR_SITE_HERE.xyz>'
 ```
 - `DATABASE_URL` is the URL Prisma uses to connect to your database (default is postgres)
 - `DIRECT_URL` is the direct connection to the database which is used for migrations.
@@ -143,7 +146,7 @@ AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
 - `AUTH_TRUST_HOST` allows authentication to work on a local build where only HTTPS is allowed
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_SECRET_KEY` are used to connect to [Stripe](https://docs.stripe.com/keys)
 - `STRIPE_WEBHOOK_SECRET` is used in development and production
-  - When used in development, copy the secret printed when the server runs and paste it into your `.env` file
+  - When used in development, copy the secret printed when the server runs and paste it into your `.env.local` file
   ```
   [stripe] Ready! You are using Stripe API Version [2024-11-20.acacia]. Your webhook signing secret is <KEY> (^C to quit)
   ```
@@ -152,7 +155,8 @@ AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
   - After following this tutorial, you want to go to __IAM -> Users__ and create a new user
   - Choose __Attach policies directly__ and select `AdministratorAccess` and create the user
   - Select the user in the table and go to __Security Credentials__ and create a __access key__ with the __other__ option selected
-  - You can now paste those credentials inside your `.env` file
+  - You can now paste those credentials inside your `.env.local` file
+- `SITE_URL` is used when you are ready for production and you have a valid site URL, otherwise getBaseUrl() might return localhost
 
 ## Run the development server
 1. Run `npm install` to install all dependencies
