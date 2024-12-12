@@ -1,0 +1,96 @@
+---
+title: SEO
+description: Learn how to set up SEO for your CoreX application, including generating and customizing your sitemap.
+---
+
+<Callout title="Note">
+  Before continuing, refer to the [Next.js documentation on `sitemap.ts`](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap) for guidance on creating a sitemap.
+</Callout>
+
+---
+
+## Overview
+CoreX simplifies SEO management with a built-in `sitemap.ts` file located in `/src/app/sitemap.ts`. This file serves as the central point for defining and customizing your application's sitemap.
+
+### Why Use `sitemap.ts`?
+- **Automatic Inclusion**: CoreX automatically includes default routes in your sitemap.
+- **Customizable**: Easily add or modify URLs and fields based on your requirements.
+- **SEO-Friendly**: Optimize your site's visibility with Next.js-specific features like custom fields, priorities, and change frequencies.
+
+---
+
+## Setting Up `sitemap.ts`
+Follow these steps to configure your sitemap in CoreX:
+
+### Default Structure
+Below is the default implementation of `sitemap.ts`. You can customize this to meet your needs:
+
+```ts
+import { getBaseUrl } from "@/lib/utils";
+import type { MetadataRoute } from "next";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = getBaseUrl();
+
+  const pages = [
+    { path: "/", priority: 1.0 },
+    // Add your custom pages here
+  ];
+
+  return pages.map(({ path, priority }) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority,
+  }));
+}
+```
+
+### Customization Options
+1. **Adding New Pages**:
+   - Append additional routes to the `pages` array.
+   - Example:
+     ```ts
+     const pages = [
+       { path: "/about", priority: 0.8 },
+       { path: "/blog", priority: 0.7 },
+     ];
+     ```
+
+2. **Custom Fields**:
+   - Use the Next.js documentation to add fields like `changeFrequency` or `lastModified`.
+   - Example:
+     ```ts
+     pages.map(({ path }) => ({
+       url: `${baseUrl}${path}`,
+       lastModified: new Date("2024-01-01"),
+       changeFrequency: "daily",
+       priority: 0.9,
+     }));
+     ```
+
+3. **Dynamic Routes**:
+   - Generate dynamic routes by fetching data from APIs or your database.
+   - Example:
+     ```ts
+     const blogPosts = await fetchBlogPosts();
+     const pages = blogPosts.map(post => ({
+       path: `/blog/${post.slug}`,
+       priority: 0.6,
+     }));
+     ```
+
+### Best Practices
+- **Keep It Updated**: Regularly update your sitemap to reflect new and removed routes.
+- **Prioritize Important Pages**: Assign higher priorities to critical pages (e.g., homepage, key landing pages).
+- **Use Correct Change Frequencies**: Ensure accurate values (`daily`, `weekly`, `monthly`) for better SEO signaling.
+
+---
+
+## Additional Resources
+- [Next.js Sitemap Documentation](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap)
+- [CoreX GitHub Repository](https://github.com/corex)
+
+<Callout title="Pro Tip">
+  Leverage dynamic route generation to include pages like blog posts or product listings in your sitemap automatically.
+</Callout>

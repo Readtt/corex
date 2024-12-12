@@ -1,15 +1,42 @@
 ---
 title: Authenticated Pages
-description: Pages that only authenticated users are allowed to access
+description: A guide to pages accessible only to authenticated users in your application.
 ---
 
-## Help
-![help page](/help-page.png)
+<Callout title="Restricted Access">
+  The pages outlined in this guide are exclusively available to authenticated users. Ensure proper authentication flows are implemented. CoreX defaults to the Google auth flow.
+</Callout>
 
-## Settings
+---
 
-### Account
-![settings account page](/settings-account-page.png)
+## Authenticated Pages Overview
 
-### Billing
-![settings billing page](/settings-billing-page.png)
+Authenticated pages provide secure access to sensitive features and settings within your application. Below is a breakdown of key pages available to logged-in users:
+
+---
+
+### Help
+Access the **Help Page** to open a ticket if there is an issue.
+
+![Help Page](/help-page.png)
+
+---
+
+### Settings
+The **Settings Page** allows users to manage their account and billing details. It is divided into the following sections:
+
+#### Account
+Manage account details such as profile information.
+
+![Settings Account Page](/settings-account-page.png)
+
+#### Billing
+Update billing information and manage subscriptions.
+
+![Settings Billing Page](/settings-billing-page.png)
+
+---
+
+<Callout title="Tip">
+  For better user experience, ensure that unauthenticated users attempting to access these pages are redirected to the login page.
+</Callout>

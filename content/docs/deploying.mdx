@@ -1,56 +1,63 @@
 ---
 title: Deploying
-description: All things related to deployment with SST, Prisma, Stripe and Google
+description: Comprehensive guide to deploying with SST, Prisma, Stripe, and Google.
 ---
 
 <Callout title="Note">
-  Before continuting, follow the [NextJS guide on
-  deployment](https://nextjs.org/docs/app/building-your-application/deploying)
-  to optimize your code ONLY and adding whatever features you want in
-  production. The rest of the instructions will be provided here.
+  Before continuing, refer to the [Next.js guide on deployment](https://nextjs.org/docs/app/building-your-application/deploying) to optimize your code for production. This guide provides additional deployment instructions.
 </Callout>
 
 ---
 
-## Production environment variables
+## Production Environment Variables
 
-Copy all local environment variables from `.env.local` into `.env` and start changing environment variables to work in production.
+Copy all local environment variables from `.env.local` into `.env` and update them for the production environment.
+
+---
+
+## Deployment Steps
 
 ### SST
-
-Read this [overview](https://opennext.js.org/aws) of the limitations and functionalities of using SST as a deployment option for production and [this](https://sst.dev/docs/component/aws/nextjs) reference document to different components available in SST.
+- **Overview**: Familiarize yourself with [SST's functionalities and limitations](https://opennext.js.org/aws).
+- **Components**: Explore available components using the [SST documentation](https://sst.dev/docs/component/aws/nextjs).
 
 ### Prisma
-
-Upgrade your chosen database to a production ready plan.
+- **Database Upgrade**: Ensure your database plan is upgraded to a production-ready tier.
 
 ### Stripe
-
-1. Disable test mode
-2. Go to **Product catalog** and under your products menu, click **Copy to live mode**
-3. Navigate to `/src/config.ts` and update the `production` field under `priceIds`
-4. Setup a [new webhook endpoint](https://docs.stripe.com/development/dashboard/webhooks) with the `invoice.payment_succeeded` and `checkout.session.completed` events
-5. Copy your new `STRIPE_WEBHOOK_SECRET` and paste it into `.env.production`
+1. **Disable Test Mode**: Transition to live mode in the Stripe dashboard.
+2. **Copy Product Catalog**: Navigate to **Product Catalog** and select **Copy to Live Mode** under your products menu.
+3. **Update Configurations**:
+   - Update the `production` field under `priceIds` in `/src/config.ts`.
+4. **Webhook Setup**:
+   - Create a [new webhook endpoint](https://docs.stripe.com/development/dashboard/webhooks) and subscribe to `invoice.payment_succeeded` and `checkout.session.completed` events.
+   - Copy the `STRIPE_WEBHOOK_SECRET` and update `.env.production`.
 
 ### Google
+1. **Update OAuth Settings**:
+   - In Google Console, navigate to **APIs & Services -> Credentials**.
+   - Update **Authorized Redirect URIs** with your production URL.
+2. **Publish App**:
+   - Go to **APIs & Services -> OAuth Consent Screen**.
+   - Click **PUBLISH APP** and follow the prompts.
 
-1. Navigate to your Google Console
-2. Enter **APIs & Services -> Credentials**
-3. Click your application and update the **Authorised redirect URIs** to include your production URL
-4. Enter **APIs & Services -> OAuth consent screen**
-5. Click **PUBLISH APP** and follow instructions
+---
 
 ## Deploying with SST
 
-### Deploying
-To deploy to production, run this single command
-<Callout>You may have to manually remove the DynamoDB table in AWS if you get an error.</Callout>
+### Deploying to Production
+To deploy your application, use the following command:
+
 ```shell
 sst deploy --stage production
 ```
 
-### Removing your deployment
-To remove your production deployment from aws, run this command
+<Callout>
+  If you encounter errors related to DynamoDB, you may need to manually remove the table in AWS before redeploying.
+</Callout>
+
+### Removing Your Deployment
+To remove the production deployment from AWS, run:
 
 ```shell
 sst remove --stage production

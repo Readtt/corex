@@ -1,108 +1,132 @@
 ---
 title: Installation
-description: Guide to installing this project onto your operating system of choice
+description: Comprehensive guide to installing and configuring the project on your operating system of choice.
 ---
 
 ## System Requirements
-- [Node.js 18.18](https://nodejs.org/en) or later.
-- macOS, Windows (with WSL), and Linux are supported.
 
-<Callout title="Note">
-  To understand the installation processes of NextJS, you can view their [documentation](https://nextjs.org/docs/app/getting-started/installation)
+Ensure your system meets the following requirements:
+
+- **Node.js**: Version [18.18](https://nodejs.org/en) or later.
+- **Operating Systems**: macOS, Linux, and Windows (with WSL).
+
+<Callout title="Quick Note">
+  Before proceeding, consider reviewing the [Next.js installation guide](https://nextjs.org/docs/app/getting-started/installation) for optimizing your setup. Additional steps for this project are outlined below.
 </Callout>
 
 ---
 
-## Automatic installation
+## Installation Methods
 
-To deploy with [SST](https://sst.dev/) on Windows, you have to use [WSL](https://learn.microsoft.com/en-us/windows/wsl/install "Instructions"). If you prefer to use a different deployment option, you can ignore the steps involving WSL and clone the project on your machine directly.
+### Automatic Installation
 
-<Tabs items={["Windows", "macOS / Linux"]}>
+Depending on your operating system, follow the steps below to deploy the project. For Windows users, [WSL](https://learn.microsoft.com/en-us/windows/wsl/install "Instructions") is required for deploying with SST.
+
+<Tabs items={['Windows', 'macOS / Linux']}>
 
 <Tab value="Windows">
-<Callout title="Note">
-  If you decide to deploy with something other than SST, you must delete all
-  related components and uninstall everything related to SST before running `npm install` otherwise the project will not run on Windows.
+<Callout title="Important">
+  If deploying without SST, remove all related components and dependencies before running `npm install` to ensure compatibility.
 </Callout>
 
-For Windows use, you must use WSL with the **Ubuntu** distribution.
+**Steps:**
+1. Install WSL with the **Ubuntu** distribution:
 
-```shell
-wsl --install -d Ubuntu
-wsl --set-default Ubuntu
-```
+   ```shell
+   wsl --install -d Ubuntu
+   wsl --set-default Ubuntu
+   ```
 
-Set the default user to **root**
+2. Set the default user to **root**:
 
-```shell
-wsl.exe
-nano /etc/wsl.conf
-```
+   ```shell
+   wsl.exe
+   nano /etc/wsl.conf
+   ```
 
-`/etc/wsl.conf`
+   Add the following to `/etc/wsl.conf`:
 
-```
-[boot]
-systemd=true
-[user]
-default=root
-```
+   ```
+   [boot]
+   systemd=true
+   [user]
+   default=root
+   ```
 
-Use this command to restart WSL with your new changes
+3. Restart WSL:
 
-```shell
-wsl.exe --shutdown
-```
+   ```shell
+   wsl.exe --shutdown
+   ```
 
-Now you must create a new directory to store the project (outside of /mnt/c, hence needing default root access).
+4. Create a project directory:
 
-```shell
-wsl.exe
-mkdir /development
-cd /development
-```
+   ```shell
+   wsl.exe
+   mkdir /development
+   cd /development
+   ```
 
-You can now clone the project with `git clone`
+5. Clone the project repository:
 
+   ```shell
+   git clone https://github.com/Readtt/corex.git
+   ```
+</Tab>
+
+<Tab value="macOS / Linux">
+<Callout title="Important">
+  [SST CLI](https://sst.dev/docs/reference/cli/) is fully supported on macOS and Linux.
+</Callout>
+Clone the project repository:
 ```shell
 git clone https://github.com/Readtt/corex.git
 ```
-
-</Tab>
-
-<Tab value="macOS / Linux">
-  [SST CLI](https://sst.dev/docs/reference/cli/) has full support with macOS and Linux. 
-  
-  ```shell 
-  git clone https://github.com/Readtt/corex.git 
-  ```
 </Tab>
 
 </Tabs>
 
-## Install global CLI tools
-<Tabs items={["Windows", "macOS / Linux"]}>
+---
+
+## Install Global CLI Tools
+
+<Tabs items={['Windows', 'macOS / Linux']}>
 
 <Tab value="Windows">
-For Windows use, you must install all CLI tools using WSL.
+Install CLI tools within WSL:
 
-1. Install the [Stripe CLI with apt](https://docs.stripe.com/stripe-cli?install-method=apt)
-2. Authenticate with `stripe login`
-3. (Optional) Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+1. Install the [Stripe CLI with apt](https://docs.stripe.com/stripe-cli?install-method=apt):
+2. Authenticate with Stripe:
+
+   ```shell
+   stripe login
+   ```
+
+3. (Optional) Install the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 </Tab>
 
 <Tab value="macOS / Linux">
-For macOS and Linux use, install all CLI tools normally.
+Install CLI tools natively:
 
-1. Install the [Stripe CLI](https://docs.stripe.com/stripe-cli)
-2. Authenticate with `stripe login`
-3. (Optional) Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+1. Install the [Stripe CLI natively](https://docs.stripe.com/stripe-cli):
+2. Authenticate with Stripe:
+
+   ```shell
+   stripe login
+   ```
+
+3. (Optional) Install the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 </Tab>
 
 </Tabs>
 
-## Setting up environment variables
-```shell
+---
+
+## Setting Up Environment Variables
+
+Use the `.env.local.example` file as a template to create your `.env.local` file. Below are descriptions of key variables:
+
+```env
 # Since the ".env" file is gitignored, you can use the ".env.example" file to
 # build a new ".env" file when you clone the repo. Keep this file up-to-date
 # when you add new variables to `.env`.
@@ -139,6 +163,9 @@ AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
 # Site (used for production)
 # SITE_URL='<YOUR_SITE_HERE.xyz>'
 ```
+
+### Key Variables
+
 - `DATABASE_URL` is the URL Prisma uses to connect to your database (default is postgres)
 - `DIRECT_URL` is the direct connection to the database which is used for migrations.
 - `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` are used to connect [Google authentication](https://next-auth.js.org/providers/google) to your app
@@ -158,14 +185,41 @@ AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>'
   - You can now paste those credentials inside your `.env.local` file
 - `SITE_URL` is used when you are ready for production and you have a valid site URL, otherwise getBaseUrl() might return localhost
 
-## Run the development server
-1. Run `npm install` to install all dependencies
-2. Run `npm run dev` to start the development server, Prisma Studio and the Stripe Webhook process
-3. Run `sst dev` to start the development server on AWS to test SST components locally (you won't need this if you are only using SST for deployment and not changing internal components)
+### Generate Secure Keys
+Use this command to generate a random authentication secret:
 
-## Removing your SST development deployment
+```shell
+openssl rand -base64 32
+```
 
-To remove your production deployment from aws, run this command
+---
+
+## Run the Development Server
+
+1. Install dependencies:
+
+   ```shell
+   npm install
+   ```
+
+2. Start the development server **(starts dev server, prisma studio and local stripe webhook)**:
+
+   ```shell
+   npm run dev
+   ```
+
+3. Start SST locally (if applicable):
+
+   ```shell
+   sst dev
+   ```
+
+---
+
+## Removing SST Deployment
+
+To clean up your SST development deployment, use:
+
 ```shell
 sst remove --stage development
 ```

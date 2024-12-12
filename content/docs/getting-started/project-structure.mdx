@@ -1,115 +1,132 @@
 ---
 title: Project Structure
-description: Introduction to all folders and files in this project that can be modified for your preferences
+description: An overview of the project's folder and file structure, with details to customize it for your needs.
 ---
 
 <Callout title="Note">
-  To understand the project structure of the NextJS files and folders, you can
-  view their
-  [documentation](https://nextjs.org/docs/app/getting-started/project-structure)
+  For detailed information on the project structure of Next.js, refer to the
+  [official
+  documentation](https://nextjs.org/docs/app/getting-started/project-structure).
 </Callout>
 
 ---
 
-## Folder and file conventions
+## Folder and File Conventions
 
-### Top-level folders
+### Top-Level Folders
 
-Top level folders are used to organize your application's code.
+These folders organize your application's core code:
 
 | **Folder** | **Description**             |
 | ---------- | --------------------------- |
 | `prisma`   | Database configuration      |
-| `content`  | Documentation related files |
+| `content`  | Documentation-related files |
 
-### Top-level files
+### Top-Level Files
 
-Top-level files are used to configure your application, manage dependencies, run middleware, integrate monitoring tools, and define environment variables.
+These files configure the application, manage dependencies, and define critical settings:
 
-| **File**             | **Description**                                                                                           |
-| -------------------- | --------------------------------------------------------------------------------------------------------- |
-| `tailwind.config.ts` | Configuration file for Tailwind CSS, defining custom themes, colors, plugins, and other styles.           |
-| `sst.config.ts`      | Configuration file for SST (Serverless Stack), used to define and deploy serverless infrastructure on AWS |
-| `source.config.ts`   | Configuration file for managing documentation path                                                        |
-| `components.json`    | shadcn file defining settings for their component library                                                 |
+| **File**             | **Description**                                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------- |
+| `tailwind.config.ts` | Tailwind CSS configuration file for themes, colors, plugins, and styles.                  |
+| `sst.config.ts`      | SST (Serverless Stack) configuration file for deploying serverless infrastructure on AWS. |
+| `source.config.ts`   | Manages documentation paths.                                                              |
+| `components.json`    | Shadcn component library configuration.                                                   |
 
-### Second-level files (src)
+### Second-Level Files (`src`)
 
-| **File**    | **Description**                                   |
-| ----------- | ------------------------------------------------- |
-| `env.js`    | File to import when using env variables, typesafe |
-| `config.ts` | All site configuration, including stripe plans    |
+Files that provide core utilities for your application:
 
-### Second-level folders (src)
+| **File**    | **Description**                                           |
+| ----------- | --------------------------------------------------------- |
+| `env.js`    | A type-safe file for importing environment variables.     |
+| `config.ts` | Contains site-wide configuration, including Stripe plans. |
 
-| **Folders**  | **Description**                                 |
-| ------------ | ----------------------------------------------- |
-| `trpc`       | Query trpc client                               |
-| `styles`     | Where global styles reside                      |
-| `server`     | Where server utilities reside                   |
-| `lib`        | All helper functions                            |
-| `components` | Smaller UI components that can be used anywhere |
+### Second-Level Folders (`src`)
 
-### Server files (src/server)
+Folders that organize auxiliary code:
 
-| **File**         | **Description**                                                                                     |
-| ---------------- | --------------------------------------------------------------------------------------------------- |
-| `api/trpc.ts`    | tRPC procedures                                                                                     |
-| `api/schemas.ts` | tRPC schemas to be used anywhere                                                                    |
-| `api/root.ts`    | Exporting all routes                                                                                |
-| `api/error.ts`   | Special tRPC helper to throw an error inside a mutation or query while preserving the error message |
-| `api/routers/*`  | All routers based on db collections and use case                                                    |
-| `auth/index.ts`  | Exporting default auth functions                                                                    |
-| `auth/config.ts` | Managing all authentication providers and settings                                                  |
-| `db/index.ts`    | Initializing Prisma for development and production                                                  |
-| `db/queries.ts`  | All db queries that are used in the codebase                                                        |
-| `stripe.ts`      | Getting the users subscription plan                                                                 |
+| **Folder**   | **Description**                  |
+| ------------ | -------------------------------- |
+| `trpc`       | Handles tRPC client queries.     |
+| `styles`     | Contains global styles.          |
+| `server`     | Houses server utilities.         |
+| `lib`        | Contains helper functions.       |
+| `components` | Smaller UI components for reuse. |
 
-### Routing files
+### Server Files (`src/server`)
 
-| **File**            | **Description**             |
-| ------------------- | --------------------------- |
-| `layout.tsx`        | Layout and metadata for SEO |
-| `error.tsx`         | Error UI                    |
-| `not-found.tsx`     | Not found UI                |
-| `layout.config.tsx` | Documentation config        |
+These files handle backend logic and operations:
 
-### Route groups
+| **File**         | **Description**                                                  |
+| ---------------- | ---------------------------------------------------------------- |
+| `api/trpc.ts`    | Contains tRPC procedures.                                        |
+| `api/schemas.ts` | Defines reusable tRPC schemas.                                   |
+| `api/root.ts`    | Exports all API routes.                                          |
+| `api/error.ts`   | Provides a helper for throwing errors while preserving messages. |
+| `api/routers/*`  | Contains route-specific logic based on database collections.     |
+| `auth/index.ts`  | Exports default authentication functions.                        |
+| `auth/config.ts` | Manages authentication providers and settings.                   |
+| `db/index.ts`    | Initializes Prisma for both development and production.          |
+| `db/queries.ts`  | Contains database query logic.                                   |
+| `stripe.ts`      | Handles user subscription plans.                                 |
 
-| **Folder**          | **Description**        |
-| ------------------- | ---------------------- |
-| `(admin)`           | Admin routes           |
-| `(unauthenticated)` | Unauthenticated routes |
-| `(authenticated)`   | Authenticated routes   |
+### Routing Files
 
-### Nested routes
+Files that define routing logic and layouts:
 
-| **Folder**                        | **Description**         |
-| --------------------------------- | ----------------------- |
-| `(admin)/tickets`                 | Manage all user tickets |
-| `(authenticated)/help`            | Open a ticket           |
-| `(authenticated)/settings`        | Manage global settings  |
-| `(unauthenticated)/auth`          | Signin page             |
-| `(unauthenticated)/docs`          | Documentation           |
-| `(unauthenticated)/legal`         | Legal pages             |
-| `(unauthenticated)/legal/privacy` | Privacy policy          |
-| `(unauthenticated)/legal/terms`   | Terms of service        |
-| `(unauthenticated)/pricing`       | Pricing page            |
-| `api`                             | API route               |
-| `api/auth`                        | NextAuth route          |
-| `api/stripe-webhook`              | Stripe webhook route    |
-| `api/trpc`                        | tRPC route              |
+| **File**            | **Description**                         |
+| ------------------- | --------------------------------------- |
+| `layout.tsx`        | Defines layout and SEO metadata.        |
+| `error.tsx`         | Displays error UI.                      |
+| `not-found.tsx`     | Displays "Not Found" UI.                |
+| `layout.config.tsx` | Configuration for documentation layout. |
 
-### Private folders
+### Route Groups
 
-| **Folder**    | **Description**                                          |
-| ------------- | -------------------------------------------------------- |
-| `_components` | Where large, reusable components used in pages are found |
+Organized route folders based on user roles and states:
+
+| **Folder**          | **Description**                   |
+| ------------------- | --------------------------------- |
+| `(admin)`           | Admin-specific routes.            |
+| `(unauthenticated)` | Routes for unauthenticated users. |
+| `(authenticated)`   | Routes for authenticated users.   |
+
+### Nested Routes
+
+Specific routes organized within functional folders:
+
+| **Folder**                        | **Description**          |
+| --------------------------------- | ------------------------ |
+| `(admin)/tickets`                 | Manage all user tickets. |
+| `(authenticated)/help`            | Open support tickets.    |
+| `(authenticated)/settings`        | Manage global settings.  |
+| `(unauthenticated)/auth`          | Sign-in page.            |
+| `(unauthenticated)/docs`          | Documentation pages.     |
+| `(unauthenticated)/legal`         | Legal documents.         |
+| `(unauthenticated)/legal/privacy` | Privacy policy page.     |
+| `(unauthenticated)/legal/terms`   | Terms of service page.   |
+| `(unauthenticated)/pricing`       | Pricing page.            |
+| `api`                             | API routes.              |
+| `api/auth`                        | NextAuth route.          |
+| `api/stripe-webhook`              | Stripe webhook handler.  |
+| `api/trpc`                        | tRPC route.              |
+
+### Private Folders
+
+Folders reserved for reusable, large components:
+
+| **Folder**    | **Description**                               |
+| ------------- | --------------------------------------------- |
+| `_components` | Large, reusable components used across pages. |
 
 ### SEO
 
-| **File**              | **Description**                            |
-| --------------------- | ------------------------------------------ |
-| `layout.tsx`          | Metadata for SEO is contained in this file |
-| `favicon.svg`         | Page favicon                               |
-| `opengraph-image.png` | Image to show on site previews             |
+Files and assets related to search engine optimization:
+
+| **File**              | **Description**                                         |
+| --------------------- | ------------------------------------------------------- |
+| `layout.tsx`          | Contains SEO metadata.                                  |
+| `sitemap.ts`          | Automatically generates a sitemap for your application. |
+| `favicon.svg`         | Favicon for the website.                                |
+| `opengraph-image.png` | Image displayed in link previews.                       |
